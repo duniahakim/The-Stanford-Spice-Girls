@@ -6,7 +6,7 @@
 
 ### Team members
 
-Sanura N'Jaka
+Sanura N'Jaka  
 ![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
 ### A synopsis of our project
@@ -17,8 +17,8 @@ Ideas Include:
 
 ### Communication
 We will be communicating through iMessage. For the teaching team, please contact us through email: 
-Dunia => dunia@stanford.edu
-Sanura => sanura@stanford.edu
+Dunia => dunia@stanford.edu  
+Sanura => sanura@stanford.edu  
 
 ### Team Skill Matrix
 
