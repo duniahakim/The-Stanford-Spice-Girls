@@ -10,7 +10,7 @@ Sanura N'Jaka
 ![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
 Madison Hall
-![Madison Hall](https://github.com/StanfordCS194/Team-5/blob/master/Screen Shot 2020-04-08 at 6.00.37 PM.png)
+![Madison Hall](https://github.com/StanfordCS194/Team-5/blob/master/Madison.png)
 
 ### A synopsis of our project
 
