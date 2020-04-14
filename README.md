@@ -6,6 +6,7 @@
 
 ### Team members
 
+Sanura N'Jaka
 ![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
 ### A synopsis of our project
