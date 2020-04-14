@@ -7,13 +7,13 @@
 ### Team members
 
 Sanura N'Jaka  
-![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg =250x)
+![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
 Madison Hall
-![Madison Hall](https://github.com/StanfordCS194/Team-5/blob/master/MadisonH.png =250x)  
+![Madison Hall](https://github.com/StanfordCS194/Team-5/blob/master/MadisonH.png)  
 
 Dunia Hakim  
-![Dunia Hakim](https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG =250x)
+<img src="../dunia.JPG" width="200"/> 
 
 ### A synopsis of our project
 
