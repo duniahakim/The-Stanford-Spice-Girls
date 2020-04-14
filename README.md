@@ -16,7 +16,7 @@ Ideas Include:
 - Apple Music to Spotify: A web application that will download your entire Apple Music library and upload all songs to Spotify and vice versa.
 
 ### Communication
-We will be communicating through iMessage. For the teaching team, please contact us through email: 
+We will be communicating through iMessage. For the teaching team, please contact us through email:  
 Dunia => dunia@stanford.edu  
 Sanura => sanura@stanford.edu  
 
