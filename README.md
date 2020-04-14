@@ -2,7 +2,7 @@
 
 ### Logo
 
-![Spice Girls](https://github.com/StanfordCS194/Team-5/blob/master/Spice%20Girls.png)
+![Spice Girls](https://github.com/StanfordCS194/Team-5/blob/master/Spice-Girls.jpg)
 
 ### Team members
 
