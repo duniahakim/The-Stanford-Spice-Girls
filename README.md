@@ -15,7 +15,7 @@ Dunia => dunia@stanford.edu
 
 Member | Skills | Personal Traits | Desired Growth | Weaknesses
 --- | --- | --- | --- | ---
-Dunia | AI, iOS application (swift), taking CS 142 | Programming web applications | design
+Dunia | AI, iOS application (swift), taking CS 142 | Loves education | Programming web applications | design
 Diego | Aesthetics and layout, building prototypes, AutoCAD | Disciplined | LaTeX, Planning Skills | Painting, Programming, Interpersonal communication
 Juan | AI, Machine Learning, Programming, GUI skills | Loves learning new programming languages | MatLAB | bad memory
 Andrew | Machine Learning, Audio recording, Signal processing, Statistical analysis | Strong opinions, very abstract thinker, Big PIcture guy | Rapid prototyping, project management | Sensitive to environments
