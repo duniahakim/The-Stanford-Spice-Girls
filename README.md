@@ -9,11 +9,11 @@
 Sanura N'Jaka  
 ![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
-Madison Hall
+Madison Hall  
 ![Madison Hall](https://github.com/StanfordCS194/Team-5/blob/master/MadisonH.png)  
 
 Dunia Hakim  
-<img src="../dunia.JPG" width="200"/> 
+<img src="https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG" width="300"/> 
 
 ### A synopsis of our project
 
