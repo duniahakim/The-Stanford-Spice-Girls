@@ -2,11 +2,11 @@
 
 ### Logo
 
-![Spice Girls]("Spice Girls.png")
+![Spice Girls](https://github.com/StanfordCS194/Team-5/blob/master/Spice%20Girls.png)
 
 ### Team members
 
-![Sanura N'Jaka]("Sanura.jpeg")
+![Sanura N'Jaka](https://github.com/StanfordCS194/Team-5/blob/master/Sanura.jpeg)
 
 ### A synopsis of our project
 
