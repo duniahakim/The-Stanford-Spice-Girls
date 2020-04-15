@@ -15,8 +15,8 @@ Madison Hall
 Dunia Hakim  
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG" width="300"/> 
 
-Ale Rodriguez 
-![Ale Rodriguez]
+Ale Rodriguez   
+![Ale Rodriguez](https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG)
 
 ### A synopsis of our project
 
@@ -32,7 +32,7 @@ Ideas Include:
 We will be communicating through iMessage. For the teaching team, please contact us through email:  
 Dunia   => dunia@stanford.edu  
 Sanura  => sanura@stanford.edu  
-Madison => mhall38@stanford.edu
+Madison => mhall38@stanford.edu   
 Ale     => alero33@stanford.edu
 
 ### Team Skill Matrix
