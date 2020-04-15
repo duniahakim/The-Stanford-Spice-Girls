@@ -16,9 +16,9 @@ Dunia Hakim
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG" width="300"/> 
 
 Ale Rodriguez   
-<img src="https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG" width="300"/>
+<img src="https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG" width="300"/>  
 
-Jailene Miranda-Enriquez
+Jailene Miranda-Enriquez   
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/Linkedin Pic.jpg" width="300"/>
 
 ### A synopsis of our project
@@ -36,7 +36,7 @@ We will be communicating through iMessage. For the teaching team, please contact
 Dunia   => dunia@stanford.edu  
 Sanura  => sanura@stanford.edu  
 Madison => mhall38@stanford.edu   
-Ale     => alero33@stanford.edu
+Ale     => alero33@stanford.edu  
 Jailene => jailenem@stanford.edu
 
 ### Team Skill Matrix
