@@ -18,6 +18,9 @@ Dunia Hakim
 Ale Rodriguez   
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG" width="300"/>
 
+Jailene Miranda-Enriquez
+<img src="https://github.com/StanfordCS194/Team-5/blob/master/Linkedin Pic.jpg" width="300"/>
+
 ### A synopsis of our project
 
 Ideas Include:
@@ -34,6 +37,7 @@ Dunia   => dunia@stanford.edu
 Sanura  => sanura@stanford.edu  
 Madison => mhall38@stanford.edu   
 Ale     => alero33@stanford.edu
+Jailene => jailenem@stanford.edu
 
 ### Team Skill Matrix
 
@@ -43,4 +47,4 @@ Dunia | AI, iOS application (swift), taking CS 142 | interested education, edtec
 Sanura | UI/UX Design, Android Mobile Applications (Java), React.js | Strong interest in Education and Race Theory | Programming web applications | API usage
 Madison | AI/ML, web apps (CS 142) | interested in education and health | programming web apps | design
 Ale | Designing APIs, Information systems | interested in education, women's health, social good | Mobile Apps | AI
-Jailene | --- | --- | --- | ---
+Jailene | Android Mobile Apps; some Angular.js | passionate about EdTech; interested in education | Programming Web Apps | Design
