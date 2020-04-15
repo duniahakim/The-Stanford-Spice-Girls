@@ -15,6 +15,9 @@ Madison Hall
 Dunia Hakim  
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG" width="300"/> 
 
+Ale Rodriguez 
+![Ale Rodriguez]
+
 ### A synopsis of our project
 
 Ideas Include:
@@ -27,9 +30,10 @@ Ideas Include:
 
 ### Communication
 We will be communicating through iMessage. For the teaching team, please contact us through email:  
-Dunia => dunia@stanford.edu  
-Sanura => sanura@stanford.edu  
+Dunia   => dunia@stanford.edu  
+Sanura  => sanura@stanford.edu  
 Madison => mhall38@stanford.edu
+Ale     => alero33@stanford.edu
 
 ### Team Skill Matrix
 
@@ -38,5 +42,5 @@ Member | Skills | Personal Traits | Desired Growth | Weaknesses
 Dunia | AI, iOS application (swift), taking CS 142 | interested education, edtech, EdAI | Programming web applications | design
 Sanura | UI/UX Design, Android Mobile Applications (Java), React.js | Strong interest in Education and Race Theory | Programming web applications | API usage
 Madison | AI/ML, web apps (CS 142) | interested in education and health | programming web apps | design
-Ale | --- | --- | --- | ---
+Ale | Designing APIs, Information systems | interested in education, women's health, social good | Mobile Apps | AI
 Jailene | --- | --- | --- | ---
