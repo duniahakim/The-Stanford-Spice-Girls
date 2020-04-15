@@ -16,7 +16,7 @@ Dunia Hakim
 <img src="https://github.com/StanfordCS194/Team-5/blob/master/dunia.JPG" width="300"/> 
 
 Ale Rodriguez   
-![Ale Rodriguez](https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG)
+<img src="https://github.com/StanfordCS194/Team-5/blob/master/Ale_profile.JPG" width="300"/>
 
 ### A synopsis of our project
 
