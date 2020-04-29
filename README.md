@@ -48,3 +48,6 @@ Sanura | UI/UX Design, Android Mobile Applications (Java), React.js | Strong int
 Madison | AI/ML, web apps (CS 142) | interested in education and health | programming web apps | design
 Ale | Designing APIs, Information systems | interested in education, women's health, social good | Mobile Apps | AI
 Jailene | Android Mobile Apps; some Angular.js | passionate about EdTech; interested in education | Programming Web Apps | Design
+
+### Meeting Notes
+https://docs.google.com/document/d/1Dkk3J9zOSqD-Ul7jW9J44j852F-thkFmPcvV9XEMxEs/edit?usp=sharing
