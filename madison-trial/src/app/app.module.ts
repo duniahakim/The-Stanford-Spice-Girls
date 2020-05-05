@@ -11,12 +11,14 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
+import { MessagingComponent } from './messaging/messaging.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewUserComponent,
-    HomeComponent
+    HomeComponent,
+    MessagingComponent
   ],
   imports: [
     BrowserModule,
