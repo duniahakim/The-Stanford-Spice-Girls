@@ -11,12 +11,22 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
+import { SchoolHomeComponent } from './school-home/school-home.component';
+import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
+import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
+import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
+import { SchoolViewProfileComponent } from './school-view-profile/school-view-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewUserComponent,
-    HomeComponent
+    HomeComponent,
+    SchoolHomeComponent,
+    SchoolCreateNewListingComponent,
+    SchoolViewOpenListingsComponent,
+    SchoolViewConfirmedListingsComponent,
+    SchoolViewProfileComponent
   ],
   imports: [
     BrowserModule,
