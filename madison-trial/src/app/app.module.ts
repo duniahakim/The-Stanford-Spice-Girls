@@ -16,6 +16,11 @@ import { SchoolCreateNewListingComponent } from './school-create-new-listing/sch
 import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
 import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
 import { SchoolViewProfileComponent } from './school-view-profile/school-view-profile.component';
+import { SubHomeComponent } from './sub-home/sub-home.component';
+import { SubViewOpenListingsComponent } from './sub-view-open-listings/sub-view-open-listings.component';
+import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/sub-view-confirmed-matches.component';
+import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
+import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { SchoolViewProfileComponent } from './school-view-profile/school-view-pr
     SchoolCreateNewListingComponent,
     SchoolViewOpenListingsComponent,
     SchoolViewConfirmedListingsComponent,
-    SchoolViewProfileComponent
+    SchoolViewProfileComponent,
+    SubHomeComponent,
+    SubViewOpenListingsComponent,
+    SubViewConfirmedMatchesComponent,
+    SubViewProfileComponent,
+    SubViewMatchesComponent
   ],
   imports: [
     BrowserModule,
