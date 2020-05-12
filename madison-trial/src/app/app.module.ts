@@ -11,12 +11,32 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
+import { SchoolHomeComponent } from './school-home/school-home.component';
+import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
+import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
+import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
+import { SchoolViewProfileComponent } from './school-view-profile/school-view-profile.component';
+import { SubHomeComponent } from './sub-home/sub-home.component';
+import { SubViewOpenListingsComponent } from './sub-view-open-listings/sub-view-open-listings.component';
+import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/sub-view-confirmed-matches.component';
+import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
+import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewUserComponent,
-    HomeComponent
+    HomeComponent,
+    SchoolHomeComponent,
+    SchoolCreateNewListingComponent,
+    SchoolViewOpenListingsComponent,
+    SchoolViewConfirmedListingsComponent,
+    SchoolViewProfileComponent,
+    SubHomeComponent,
+    SubViewOpenListingsComponent,
+    SubViewConfirmedMatchesComponent,
+    SubViewProfileComponent,
+    SubViewMatchesComponent
   ],
   imports: [
     BrowserModule,
