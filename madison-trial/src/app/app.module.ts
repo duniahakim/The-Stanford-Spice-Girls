@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
 import { MessagingComponent } from './messaging/messaging.component';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAscTztvYV091FR8nUcX9cQBf5SIGHghaM",
@@ -35,10 +37,10 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),  //changed from environment.firebase to firebaseConfig
  	  AngularFirestoreModule,
-    FormsModule,
-    HttpModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
