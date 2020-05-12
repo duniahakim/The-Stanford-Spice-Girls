@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Params } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-new-user',
@@ -8,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class NewUserComponent implements OnInit {
 
   name: string = '';
+  loginForm: FormGroup;
+  errorMessage: string = '';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }

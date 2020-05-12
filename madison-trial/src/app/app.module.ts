@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SchoolHomeComponent } from './school-home/school-home.component';
 import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
 import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
@@ -21,6 +21,7 @@ import { SubViewOpenListingsComponent } from './sub-view-open-listings/sub-view-
 import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/sub-view-confirmed-matches.component';
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +37,16 @@ import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.com
     SubViewOpenListingsComponent,
     SubViewConfirmedMatchesComponent,
     SubViewProfileComponent,
-    SubViewMatchesComponent
+    SubViewMatchesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
  	  AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

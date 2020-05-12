@@ -1,13 +1,8 @@
-<div class="play-container">
-    <button routerLink="/school-home">School</button>
-    <button routerLink="/sub-home">Sub</button>
-</div>
-
-<h1 class="header">Login to SubHelp</h1>
+<h1 class="header">Create an account</h1>
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="registerForm">
         <div class="form-group">
           <label>Email address</label>
           <input type="email" formControlName="email" class="form-control">
@@ -16,15 +11,23 @@
           <label>Password</label>
           <input type="password" class="form-control" formControlName="password">
           <label class="error">{{errorMessage}}</label>
+          <label class="success">{{successMessage}}</label>
         </div>
-        <!-- after type (click)="tryLogin(loginForm.value)" -->
-        <button type="submit"  class="btn btn-default">Login</button>
+        <div class="form-group">
+        	<label> I am a... </label>
+        	<select id="group">
+  				<option value="sub">Substitute</option>
+  				<option value="school">School</option>
+  			</select>
+  		</div>
+        <!-- (click)="tryRegister(registerForm.value)" -->
+        <button type="submit" class="btn btn-default">Register</button>
       </form>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p>No account yet? <a routerLink="/register" href="/register">Create an account</a></p>
+      <p>Already have an account? <a href="/new-user" routerLink="/new-user">Login</a></p>
     </div>
   </div>
 </div>
