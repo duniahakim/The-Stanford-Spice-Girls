@@ -4,11 +4,11 @@ import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-new-user',
-  templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.css']
+  selector: 'app-school-login',
+  templateUrl: './school-login.component.html',
+  styleUrls: ['./school-login.component.css']
 })
-export class NewUserComponent implements OnInit {
+export class SchoolLoginComponent implements OnInit {
 
   name: string = '';
   loginForm: FormGroup;
@@ -16,7 +16,7 @@ export class NewUserComponent implements OnInit {
 
   constructor(
   	private router: Router,
-  	private authService: AuthService,
+  	// public authService: AuthService,
   	private fb: FormBuilder
   ) {
   	this.createForm();
@@ -29,16 +29,19 @@ export class NewUserComponent implements OnInit {
     });
   }
 
-	tryLogin(value) {
-	    this.authService.login(value.email, value.password)
-	    .then(res => {
-	      this.router.navigate(['/sub-home']);
-	    }, err => {
-	      console.log(err);
-	      this.errorMessage = err.message;
-	    })
-	  }
+	tryLogin(value){
+		this.router.navigate(['/school-home']);
+	}
+  //   this.authService.doLogin(value)
+  //   .then(res => {
+  //     this.router.navigate(['/school-home']);
+  //   }, err => {
+  //     console.log(err);
+  //     this.errorMessage = err.message;
+  //   })
+  // }
 
   ngOnInit(): void {
   }
+
 }
