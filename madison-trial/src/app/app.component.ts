@@ -10,6 +10,8 @@ export class AppComponent {
   title = 'Sub Help';
   loginstatus = 'Sign up';
   routerLink = '/register';
+  subHeader = false;
+  schoolHeader = false;
 
 
   constructor(private authService: AuthService) {
@@ -24,12 +26,21 @@ export class AppComponent {
   		this.authService.logout();
   		this.loginstatus = 'Sign up';
   		this.routerLink = '/register';
+      this.subHeader = false;
+      this.schoolHeader = false;
   	}
   }
 
   changeHeader() {
   	this.loginstatus = 'Logout';
   	this.routerLink = '';
+    this.subHeader = true;
+  }
+
+  changeSchoolHeader() {
+    this.loginstatus = 'Logout';
+    this.routerLink = '';
+    this.schoolHeader = true;
   }
 
 }
