@@ -16,7 +16,7 @@ export class SchoolLoginComponent implements OnInit {
 
   constructor(
   	private router: Router,
-  	// public authService: AuthService,
+  	private authService: AuthService,
   	private fb: FormBuilder
   ) {
   	this.createForm();
@@ -30,16 +30,14 @@ export class SchoolLoginComponent implements OnInit {
   }
 
 	tryLogin(value){
-		this.router.navigate(['/school-home']);
-	}
-  //   this.authService.doLogin(value)
-  //   .then(res => {
-  //     this.router.navigate(['/school-home']);
-  //   }, err => {
-  //     console.log(err);
-  //     this.errorMessage = err.message;
-  //   })
-  // }
+    this.authService.login(value.email, value.password)
+    .then(res => {
+      this.router.navigate(['/school-home']);
+    }, err => {
+      console.log(err);
+      this.errorMessage = err.message;
+    })
+  }
 
   ngOnInit(): void {
   }

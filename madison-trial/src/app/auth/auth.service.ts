@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(
   	public  afAuth:  AngularFireAuth,
-  	public  router:  Router
+  	public  router:  Router,
   ) {
   	this.afAuth.authState.subscribe(user => {
       if (user){
@@ -26,13 +26,12 @@ export class AuthService {
 
   async login(email: string, password: string) {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
-    this.router.navigate(['sub-home']);
   }
 
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['']);
+    //this.router.navigate(['']);
   }
 
   get isLoggedIn(): boolean {
