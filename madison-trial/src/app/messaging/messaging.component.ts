@@ -20,31 +20,40 @@ export class MessagingComponent{ //implements OnInit{
   listOfSchools: Observable<any[]>;
   userId: number;
   schoolId: number;
+  userRef: AngularFireList<any>;
+  user: Observable<any[]>;
+  username: any;
 
   constructor(public af: AngularFireDatabase) {
       this.userId = 3;
+      this.af = af;
+      this.username = "user1";
 
-      this.listOfSchoolsRef = af.list('/' + this.userId, ref => {
-        return ref.limitToLast(5)
-      });
+      this.listOfSchoolsRef = af.list('/users/' + this.userId + '/schools');
       this.listOfSchools = this.listOfSchoolsRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
-
+      this.userRef = af.list('/users/' + this.userId);
+      this.user = this.userRef.snapshotChanges().pipe(
+      map(changes => 
+        changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
+      ));
+      
       // this.schoolId = this.listOfSchools[0];
       this.schoolId = 5;
-      this.setupConversation(af);
+      this.setupConversation();
+      //this.userRef.update( name, this.username );
   }
 
-  setupConversation(af: AngularFireDatabase) {
+  setupConversation() {
     let conversationID;
     if (this.userId > this.schoolId) {
       conversationID = this.schoolId + '-' + this.userId;
     } else {
       conversationID = this.userId + '-' + this.schoolId;
     }
-    this.itemsRef = af.list('/messages/' + conversationID, ref => {
+    this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
       return ref.limitToLast(5)
     });
     this.items = this.itemsRef.snapshotChanges().pipe(
@@ -54,7 +63,7 @@ export class MessagingComponent{ //implements OnInit{
   }
 
   chatSend(theirMessage: string) {
-      this.itemsRef.push({ message: theirMessage, name: 'Ale'});
+      this.itemsRef.push({ message: theirMessage, name: this.userRef.name});
       this.msgVal = '';
   }
 
@@ -63,8 +72,9 @@ export class MessagingComponent{ //implements OnInit{
   //   this.listOfSchools = this.af.list('/user');
   // }
 
-  // pickedSchool(event) {
-  //   this.schoolId = event.target.value;
-  //   setupConversation();
-  // }
+  pickedSchool(event: any) {
+    this.schoolId = event.target.name;
+    console.log(this.schoolId);
+    this.setupConversation();
+  }
 }

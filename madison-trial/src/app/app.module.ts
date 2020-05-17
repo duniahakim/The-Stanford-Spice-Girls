@@ -26,6 +26,13 @@ const firebaseConfig = {
   measurementId: "G-HP69NBHD3Y"
 };
 
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//     match /{allPaths=**} {
+//       allow read, write: if request.auth != null;
+//     }
+//   }
+// }
 
 @NgModule({
   declarations: [
