@@ -3,11 +3,6 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// import { AngularFireModule } from 'angularfire2';
-// // for AngularFireDatabase
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
-// import { AngularFireDatabase } from 'angularfire2/database';
-
 
 @Component({
   selector: 'app-messaging',
@@ -15,26 +10,47 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./messaging.component.css']
 })
 
-export class MessagingComponent implements OnInit{
+export class MessagingComponent{ //implements OnInit{
   // items: Observable<any>;
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
   name: any;
   msgVal: string = '';
+  listOfSchoolsRef: AngularFireList<any>;
+  listOfSchools: Observable<any[]>;
+  userId: number;
+  schoolId: number;
 
   constructor(public af: AngularFireDatabase) {
-      this.itemsRef = af.list('/messages', ref => {
+      this.userId = 3;
+
+      this.listOfSchoolsRef = af.list('/' + this.userId, ref => {
         return ref.limitToLast(5)
       });
-      this.items = this.itemsRef.snapshotChanges().pipe(
+      this.listOfSchools = this.listOfSchoolsRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
+      ));
 
-    // this.items = this.af.list('/messages', ref => {
-    //   return ref.limitToLast(5)
-    // }).valueChanges();
+      // this.schoolId = this.listOfSchools[0];
+      this.schoolId = 5;
+      this.setupConversation(af);
+  }
+
+  setupConversation(af: AngularFireDatabase) {
+    let conversationID;
+    if (this.userId > this.schoolId) {
+      conversationID = this.schoolId + '-' + this.userId;
+    } else {
+      conversationID = this.userId + '-' + this.schoolId;
+    }
+    this.itemsRef = af.list('/messages/' + conversationID, ref => {
+      return ref.limitToLast(5)
+    });
+    this.items = this.itemsRef.snapshotChanges().pipe(
+    map(changes =>
+      changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    ));
   }
 
   chatSend(theirMessage: string) {
@@ -42,7 +58,13 @@ export class MessagingComponent implements OnInit{
       this.msgVal = '';
   }
 
-  ngOnInit() {
-    this.itemsRef = this.af.list('/messages');
-  }
+  // ngOnInit() {
+  //   this.itemsRef = this.af.list('/messages/user1-user2');
+  //   this.listOfSchools = this.af.list('/user');
+  // }
+
+  // pickedSchool(event) {
+  //   this.schoolId = event.target.value;
+  //   setupConversation();
+  // }
 }
