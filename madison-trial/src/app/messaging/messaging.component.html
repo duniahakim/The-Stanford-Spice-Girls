@@ -1,4 +1,4 @@
-<!-- <link
+<link
 rel="stylesheet"
 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -8,10 +8,10 @@ crossorigin="anonymous"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
 type="text/css"
 rel="stylesheet"
-/> -->
+/>
 
 <!-- Toolbar -->
-<!-- <div class="content" role="main">
+<div class="content" role="main">
   <div class="container">
     <div class="messaging">
       <div class="inbox_msg">
@@ -22,28 +22,40 @@ rel="stylesheet"
             </div>
           </div>
           <div class="inbox_chat">
-            <div class="channels">
-              <div class="chat_list">
+            <div class="channels" *ngFor="let item of listOfSchools | async">
+              <button id={{item.id}} class="chat_list" name={{item.id}} value={{item.id}} (click)="pickedSchool(item.id)">
                 <div class="chat_people">
-                  <div class="chat_ib">
+                  <div class="chat_ib" >
+                    <!-- <button class="school-convo" name={{item.id}} (click)="pickedSchool($event)"> -->
+                      <h5> {{item.name}}</h5>
+                    <!-- </button> -->
+
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
-        <div class="mesgs">
-          <div class="msg_history">
-            <li class="message">
+        <div class="mesgs" >
+          <div class="msg_history" id="msg_history">
+            <li class="message" *ngFor="let item of items | async">
+              <div
+              *ngIf="
+                  item.id !== this.userId;
+                  then incoming_msg;
+                  else outgoing_msg
+                "
+                ></div>
               <ng-template #incoming_msg>
                 <div class="incoming_msg">
-                  <div class="incoming_msg_img">
+                  <!-- <div class="incoming_msg_img">
                     <img
                     src="https://i.imgur.com/k2PZLZa.png"
                     alt="User avatar"/>
-                  </div>
+                  </div> -->
                   <div class="received_msg">
                     <div class="received_withd_msg">
+                      <p>{{ item.message }}</p>
                     </div>
                   </div>
                 </div>
@@ -51,19 +63,22 @@ rel="stylesheet"
               <ng-template #outgoing_msg>
                 <div class="outgoing_msg">
                   <div class="sent_msg">
+                    <p>{{ item.message }}</p>
                   </div>
                 </div>
               </ng-template>
             </li>
           </div>
           <div class="type_msg">
-            <form class="input_msg_write">
+            <form class="input_msg_write" (ngSubmit)="chatSend()">
               <input
+              autocomplete="off"
               type="text"
               class="write_msg"
               placeholder="Type a message"
-              name="newMessage"/>
-              <button class="msg_send_btn" type="button">
+              name="msgVal"
+              [(ngModel)]="msgVal"/>
+              <button class="msg_send_btn" type="button" (click)="chatSend()">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
             </form>
@@ -72,8 +87,9 @@ rel="stylesheet"
       </div>
     </div>
   </div>
-</div> -->
-<head>
+</div>
+
+<!-- <head>
   <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,500" rel="stylesheet">
 </head>
@@ -87,11 +103,10 @@ rel="stylesheet"
     </div>
 
     <input type="text" id="message" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
-    <!-- <input type="file" id="file">   -->
+    <input type="file" id="file">
     <div class="chat-container" *ngFor="let item of items | async">
-        <p>{{item.name}}</p> <!-- want to link to profile-->
+        <p>{{item.name}}</p>
         <p>{{item.message}}</p>
       </div>
   </div>
-</body>
-<!-- <h1>hello!</h1> -->
+</body> -->

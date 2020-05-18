@@ -34,16 +34,17 @@ export class MessagingComponent{ //implements OnInit{
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
+
       this.userRef = af.list('/users/' + this.userId);
       this.user = this.userRef.snapshotChanges().pipe(
-      map(changes => 
+      map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
       ));
-      
-      // this.schoolId = this.listOfSchools[0];
-      this.schoolId = 5;
+
+      // this.schoolId = 1;
       this.setupConversation();
       //this.userRef.update( name, this.username );
+
   }
 
   setupConversation() {
@@ -53,18 +54,30 @@ export class MessagingComponent{ //implements OnInit{
     } else {
       conversationID = this.userId + '-' + this.schoolId;
     }
-    this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
-      return ref.limitToLast(5)
-    });
+    //commented out part that only retrieves last few messages
+    // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
+    //   return ref.limitToLast(5)
+    // });
+    this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
     map(changes =>
       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
     ));
   }
 
-  chatSend(theirMessage: string) {
-      this.itemsRef.push({ message: theirMessage, name: this.userRef.name});
-      this.msgVal = '';
+  // chatSend(theirMessage: string) {
+  //   console.log(theirMessage);
+  //     this.itemsRef.push({ message: theirMessage, name: "Ale"});
+  //     this.msgVal = '';
+  // }
+
+  chatSend() {
+    this.itemsRef.push({ message: this.msgVal, name: "Ale", id: this.userId});
+    this.msgVal = '';
+
+    //scrolling to bottom of chat
+    // let messageHistory = document.getElementById('msg_history')
+    // messageHistory.scrollTop = messageHistory.scrollHeight - messageHistory.clientHeight;
   }
 
   // ngOnInit() {
@@ -72,9 +85,8 @@ export class MessagingComponent{ //implements OnInit{
   //   this.listOfSchools = this.af.list('/user');
   // }
 
-  pickedSchool(event: any) {
-    this.schoolId = event.target.name;
-    console.log(this.schoolId);
+  pickedSchool(schoolId: any) {
+    this.schoolId = schoolId;
     this.setupConversation();
   }
 }

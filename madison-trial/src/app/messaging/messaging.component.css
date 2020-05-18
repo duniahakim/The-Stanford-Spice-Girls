@@ -114,6 +114,11 @@ img {
 	border-bottom: 1px solid #c4c4c4;
 	margin: 0;
 	padding: 18px 16px 10px;
+	width:100%;
+	background-color: inherit;
+	text-align: left;
+	outline: none;
+  box-shadow: none;
 }
 
 .inbox_chat {
@@ -176,7 +181,6 @@ img {
 
 .outgoing_msg {
 	overflow: hidden;
-	margin: 26px 0 26px;
 }
 
 .sent_msg {
@@ -190,7 +194,9 @@ img {
 	color: #4c4c4c;
 	font-size: 15px;
 	min-height: 48px;
-	width: 100%;
+	width: 88%;
+	outline: none;
+  box-shadow: none;
 }
 
 .type_msg {
@@ -210,6 +216,8 @@ img {
 	right: 0;
 	top: 11px;
 	width: 33px;
+	outline: none;
+  box-shadow: none;
 }
 
 .messaging {
@@ -223,13 +231,17 @@ img {
 
 .message {
 	list-style-type: none;
+	margin: 12px 0px;
+}
+
+.chosenSchool {
+	background-color: #05728f;
 }
 
 
 
-
 /* new tutorial  */
-input#message {
+/* input#message {
     background:none;
     border:none;
     border-bottom: 1px solid #4C4C4C;
@@ -289,4 +301,4 @@ button {
     font-size:1.2em;
     margin-bottom: 30px;
     cursor:pointer;
-}
+} */
