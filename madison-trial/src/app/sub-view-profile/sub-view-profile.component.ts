@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from  'firebase';
 
 @Component({
   selector: 'app-sub-view-profile',
@@ -8,6 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class SubViewProfileComponent implements OnInit {
 
   constructor() { }
+
+  userItems = localStorage.getItem('user');
+  user: User = JSON.parse(this.userItems);
+  email = this.user.email;
+  name = this.user.displayName;
+  photoUrl = this.user.photoURL;
+
+  //localStorage.setItem('userUID', user.uid);
 
   ngOnInit(): void {
   }

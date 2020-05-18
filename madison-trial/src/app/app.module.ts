@@ -24,6 +24,7 @@ import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.com
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 import { RegisterComponent } from './register/register.component';
 import { SchoolLoginComponent } from './school-login/school-login.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SchoolLoginComponent } from './school-login/school-login.component';
     SubViewProfileComponent,
     SubViewMatchesComponent,
     RegisterComponent,
-    SchoolLoginComponent
+    SchoolLoginComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

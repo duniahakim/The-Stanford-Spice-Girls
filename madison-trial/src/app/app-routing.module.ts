@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component'; 
 import { NewUserComponent } from './new-user/new-user.component'; 
 
@@ -20,7 +21,8 @@ import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.com
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'new-user', component: NewUserComponent }, // log in page
+	{ path: 'edit-profile', component: EditProfileComponent},
+	{ path: 'new-user', component: NewUserComponent }, // log in page for sub
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'school-home', component: SchoolHomeComponent},
 	{ path: 'school-login', component: SchoolLoginComponent},
