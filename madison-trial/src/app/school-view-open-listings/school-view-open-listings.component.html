@@ -1,1 +1,48 @@
-<p>*list view of open listings with for specific day/week*</p>
+<body>
+    <div class="form-group">
+      <strong>Filter Listings By:</strong>
+  
+      <select class="form-control"
+              [(ngModel)]="filter_by">
+        <option></option>      
+
+        <option value="subject">Subject</option>
+        <option value="grade">Grade</option>
+        <option value="date">Date</option>
+        <option value="time">Time</option>
+        <option value="pay_rate">Pay Rate</option>
+        <option value="teacher_name">Teacher Name</option>
+      </select>
+  
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          name="searchString"
+          placeholder="Type to search..."
+          [(ngModel)]="searchString"
+        />
+      </div>
+    </div>  
+  
+    <table class="center">
+      <thead>
+          <h1>All Listings</h1>
+      </thead>
+  
+      <!-- Show Listings in order by date of job -->
+      <tbody *ngIf="ALL_LISTINGS">
+          <tr *ngFor="let listing of ALL_LISTINGS | listingsFilter : filter_by : searchString">
+              <td class="subject"> {{listing.subject}} </td>
+              <td class="grade"> Grade {{listing.grade}} </td>
+              <td class="date"> {{listing.date}} </td>
+              <td class="time"> {{listing.time}} </td>
+              <td class="pay_rate"> {{listing.pay_rate}} </td>
+              <td class="teacher_name"> {{listing.teacher_name}} </td>
+              <td class="teacher_email"> {{listing.teacher_email}} </td>
+              <p> Don't forget to add the lesson plan! </p>
+          </tr>
+      </tbody>
+  </table>
+  </body>
+  
