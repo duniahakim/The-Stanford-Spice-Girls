@@ -16,6 +16,8 @@ import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/s
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
+import { ListingsFilterPipe } from './sub-view-open-listings/listings-filter.pipe';
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'new-user', component: NewUserComponent },
@@ -33,6 +35,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [ListingsFilterPipe],
+  exports: [
+	  RouterModule,
+	  ListingsFilterPipe]
 })
 export class AppRoutingModule { }
