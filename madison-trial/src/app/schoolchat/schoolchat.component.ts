@@ -25,6 +25,7 @@ export class SchoolChatComponent{ //implements OnInit{
   schoolRef: AngularFireList<any>;
   school: Observable<any[]>;
   user: User = JSON.parse(localStorage.getItem('user'));
+  newSchoolRef: AngularFireList<any>
   
 
   constructor(public af: AngularFireDatabase) {
@@ -32,18 +33,22 @@ export class SchoolChatComponent{ //implements OnInit{
       this.af = af;
       this.name = this.user.displayName;
       this.email = this.user.email;
-
-      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
-      this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      ));
-
+      console.log(this.schoolId);
+      this.userId = '3';
       this.schoolRef = af.list('/schools/' + this.schoolId);
       this.school = this.schoolRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
       ));
+
+      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
+      this.listOfTeachersRef.push({ id: 3 , name: "teacher3"});
+      this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      ));
+
+      
 
       // this.schoolId = 1;
       this.setupConversation();
