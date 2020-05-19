@@ -9,6 +9,10 @@ export class EditProfileComponent implements OnInit {
 
   constructor() { }
 
+  updateProfile() {
+
+  }
+
   ngOnInit(): void {
   }
 
