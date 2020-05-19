@@ -20,6 +20,7 @@ export class SchoolChatComponent{ //implements OnInit{
   msgVal: string = '';
   listOfTeachersRef: AngularFireList<any>;
   listOfTeachers: Observable<any[]>;
+  teacherRef: AngularFireList<any>;
   userId: string = '';
   schoolId: string = '';
   schoolRef: AngularFireList<any>;
@@ -42,7 +43,9 @@ export class SchoolChatComponent{ //implements OnInit{
       ));
 
       this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
-      this.listOfTeachersRef.push({ id: 3 , name: "teacher3"});
+      //this.listOfTeachersRef.push({ id: 3 , name: "teacher3"});
+      //this.teacherRef = af.list('/users/' + this.userId + '/schools');
+      //this.teacherRef.push({ id: this.schoolId, name: "school name" });
       this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
