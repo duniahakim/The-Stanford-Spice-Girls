@@ -27,9 +27,7 @@ export class SubViewProfileComponent implements OnInit {
 	userAtt: string = '';
 	sub: Sub;
 
-  constructor(private fireServ: FirebaseService) {}
-
-  ngOnInit(): void {
+  constructor(private fireServ: FirebaseService) {
   	this.fireServ.getUser(this.email);
   	this.userAtt = localStorage.getItem('userAtt');
   	this.sub = JSON.parse(this.userAtt);
@@ -39,6 +37,9 @@ export class SubViewProfileComponent implements OnInit {
 	  this.education = this.sub.bio;
 	  this.teaching = this.sub.teaching;
   	console.log(this.sub);
+  }
+
+  ngOnInit(): void {
   }
 
 }
