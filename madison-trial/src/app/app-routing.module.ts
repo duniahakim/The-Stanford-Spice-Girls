@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { HomeComponent } from './home/home.component'; 
-import { NewUserComponent } from './new-user/new-user.component'; 
+import { HomeComponent } from './home/home.component';
+import { NewUserComponent } from './new-user/new-user.component';
+import { MessagingComponent } from './messaging/messaging.component';
 
 import { RegisterComponent } from './register/register.component';
 import { SchoolHomeComponent } from './school-home/school-home.component';
@@ -18,6 +19,8 @@ import { SubViewOpenListingsComponent } from './sub-view-open-listings/sub-view-
 import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/sub-view-confirmed-matches.component';
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
+
+import { ListingsFilterPipe } from './pipes/listings-filter.pipe';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -34,11 +37,15 @@ const routes: Routes = [
 	{ path: 'sub-view-open-listings', component: SubViewOpenListingsComponent},
 	{ path: 'sub-view-confirmed-matches', component: SubViewConfirmedMatchesComponent},
 	{ path: 'sub-view-profile', component: SubViewProfileComponent},
-	{ path: 'sub-view-matches', component: SubViewMatchesComponent}
+	{ path: 'sub-view-matches', component: SubViewMatchesComponent},
+	{ path: 'messaging', component: MessagingComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [ListingsFilterPipe],
+  exports: [
+	  RouterModule,
+	  ListingsFilterPipe]
 })
 export class AppRoutingModule { }

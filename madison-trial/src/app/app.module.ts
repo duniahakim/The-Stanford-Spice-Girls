@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +26,7 @@ import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.com
 import { RegisterComponent } from './register/register.component';
 import { SchoolLoginComponent } from './school-login/school-login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MessagingComponent } from './messaging/messaging.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     SubViewMatchesComponent,
     RegisterComponent,
     SchoolLoginComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    MessagingComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
  	  AngularFirestoreModule,
+    AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule
   ],

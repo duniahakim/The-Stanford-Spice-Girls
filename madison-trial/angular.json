@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "madison-trial"
+    }
+  },
+  "defaultProject": "madison-trial",
+  "cli": {
+    "analytics": "0b90d04d-dc6d-4b6a-946a-438060ad0332"
+  }
 }
