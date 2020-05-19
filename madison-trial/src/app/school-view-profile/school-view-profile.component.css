@@ -44,3 +44,8 @@ li a {
         background: darken($primary, 10%);
     }
 }
+
+img {
+    height: 150px;
+    vertical-align: middle;
+}

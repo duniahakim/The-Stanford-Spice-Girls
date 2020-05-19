@@ -12,10 +12,18 @@
     <a routerLink="/" class="logo"> Substitute Helper</a>
     <nav>
       <ul>
-        <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/new-user">New Teacher</a></li>
-        <li><a href="#" routerLink="/messaging">Chat</a></li>
-        <li><a href="#" routerLink="/school-chat">School Chat</a></li>
+        <!-- Substitute Header --->
+        <li><a *ngIf="subHeader" href="#" routerLink="/sub-home">Listings</a></li>
+        <li><a *ngIf="subHeader" href="#" routerLink="/messaging">Messages</a></li>
+        <li><a *ngIf="subHeader" href="#" routerLink="/sub-view-profile">Profile</a></li>
+
+        <!-- School Header -->
+        <li><a *ngIf="schoolHeader" href="#" routerLink="/school-home">Listings</a></li>
+        <li><a *ngIf="schoolHeader" href="#" routerLink="/new-user">Messages</a></li>
+        <li><a *ngIf="schoolHeader" href="#" routerLink="/school-view-profile">Profile</a></li>
+        <li><a *ngIf="schoolHeader" href="#" routerLink="/school-chat">School Chat</a></li>
+
+        <li><a href="#" routerLink="{{routerLink}}" (click)="tryLogout()">{{loginstatus}}</a></li>
       </ul>
     </nav>
   </div>
@@ -32,7 +40,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-
-<router-outlet></router-outlet>

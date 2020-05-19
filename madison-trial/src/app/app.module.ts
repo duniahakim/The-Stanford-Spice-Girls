@@ -6,50 +6,57 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SchoolHomeComponent } from './school-home/school-home.component';
+import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
+import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
+import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
+import { SchoolViewProfileComponent } from './school-view-profile/school-view-profile.component';
+import { SubHomeComponent } from './sub-home/sub-home.component';
+import { SubViewOpenListingsComponent } from './sub-view-open-listings/sub-view-open-listings.component';
+import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/sub-view-confirmed-matches.component';
+import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
+import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
+import { RegisterComponent } from './register/register.component';
+import { SchoolLoginComponent } from './school-login/school-login.component';
 import { MessagingComponent } from './messaging/messaging.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAscTztvYV091FR8nUcX9cQBf5SIGHghaM",
-  authDomain: "cs194-48dd8.firebaseapp.com",
-  databaseURL: "https://cs194-48dd8.firebaseio.com",
-  projectId: "cs194-48dd8",
-  storageBucket: "cs194-48dd8.appspot.com",
-  messagingSenderId: "124531208729",
-  appId: "1:124531208729:web:52cb027f8f490267cab088",
-  measurementId: "G-HP69NBHD3Y"
-};
-
-// service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read, write: if request.auth != null;
-//     }
-//   }
-// }
 
 @NgModule({
   declarations: [
     AppComponent,
     NewUserComponent,
     HomeComponent,
+    SchoolHomeComponent,
+    SchoolCreateNewListingComponent,
+    SchoolViewOpenListingsComponent,
+    SchoolViewConfirmedListingsComponent,
+    SchoolViewProfileComponent,
+    SubHomeComponent,
+    SubViewOpenListingsComponent,
+    SubViewConfirmedMatchesComponent,
+    SubViewProfileComponent,
+    SubViewMatchesComponent,
+    RegisterComponent,
+    SchoolLoginComponent,
     MessagingComponent,
     SchoolChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),  //changed from environment.firebase to firebaseConfig
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
  	  AngularFirestoreModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
