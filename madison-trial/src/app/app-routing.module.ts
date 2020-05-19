@@ -5,6 +5,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { MessagingComponent } from './messaging/messaging.component';
+import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 import { RegisterComponent } from './register/register.component';
 import { SchoolHomeComponent } from './school-home/school-home.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
 	{ path: 'sub-view-confirmed-matches', component: SubViewConfirmedMatchesComponent},
 	{ path: 'sub-view-profile', component: SubViewProfileComponent},
 	{ path: 'sub-view-matches', component: SubViewMatchesComponent},
-	{ path: 'messaging', component: MessagingComponent }
+	{ path: 'messaging', component: MessagingComponent },
+	{ path: 'school-chat', component: SchoolChatComponent}
 ];
 
 @NgModule({

@@ -27,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { SchoolLoginComponent } from './school-login/school-login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
+import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { MessagingComponent } from './messaging/messaging.component';
     RegisterComponent,
     SchoolLoginComponent,
     EditProfileComponent,
-    MessagingComponent
+    MessagingComponent,
+    SchoolChatComponent
+    
   ],
   imports: [
     BrowserModule,
