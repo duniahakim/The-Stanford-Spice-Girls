@@ -15,11 +15,11 @@ export class FirebaseService {
 	    name: value.name,
 	    nameToSearch: value.name.toLowerCase(),
 	    email: value.email,
-      district: value.district,
-      subject: value.subject,
-      bio: value.bio,
-      education: value.education,
-      teaching: value.teaching
+		district: value.district,
+		subject: value.subject,
+		bio: value.bio,
+		education: value.education,
+		teaching: value.teaching
 	  });
 	}
 
@@ -36,4 +36,16 @@ export class FirebaseService {
 		    console.log("Error getting document:", error);
 		});
 	}
+
+	createListing(value) {
+		return this.db.collection('listings').add({
+			subject: value.subject,
+			grade: value.grade,
+			teachername: value.teachername,
+			teacherEmail: value.teacherEmail,
+			datetime: value.datetime,
+			pay: value.pay,
+			lessonplan: value.lessonplan
+	  });
+  	}
 }

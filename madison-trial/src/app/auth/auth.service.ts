@@ -46,7 +46,6 @@ export class AuthService {
     this.fireServ.createUser(value);
   }
 
-
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');
