@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component'; 
-import { NewUserComponent } from './new-user/new-user.component'; 
+import { HomeComponent } from './home/home.component';
+import { NewUserComponent } from './new-user/new-user.component';
+import { MessagingComponent } from './messaging/messaging.component';
 
 import { RegisterComponent } from './register/register.component';
 import { SchoolHomeComponent } from './school-home/school-home.component';
@@ -32,7 +33,8 @@ const routes: Routes = [
 	{ path: 'sub-view-open-listings', component: SubViewOpenListingsComponent},
 	{ path: 'sub-view-confirmed-matches', component: SubViewConfirmedMatchesComponent},
 	{ path: 'sub-view-profile', component: SubViewProfileComponent},
-	{ path: 'sub-view-matches', component: SubViewMatchesComponent}
+	{ path: 'sub-view-matches', component: SubViewMatchesComponent},
+	{ path: 'messaging', component: MessagingComponent }
 ];
 
 @NgModule({
