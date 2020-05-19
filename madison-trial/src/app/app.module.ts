@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { MessagingComponent } from './messaging/messaging.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 
 const firebaseConfig = {
@@ -39,7 +40,8 @@ const firebaseConfig = {
     AppComponent,
     NewUserComponent,
     HomeComponent,
-    MessagingComponent
+    MessagingComponent,
+    SchoolChatComponent
   ],
   imports: [
     BrowserModule,
