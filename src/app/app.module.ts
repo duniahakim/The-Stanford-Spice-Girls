@@ -29,6 +29,18 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAscTztvYV091FR8nUcX9cQBf5SIGHghaM",
+  authDomain: "cs194-48dd8.firebaseapp.com",
+  databaseURL: "https://cs194-48dd8.firebaseio.com",
+  projectId: "cs194-48dd8",
+  storageBucket: "cs194-48dd8.appspot.com",
+  messagingSenderId: "124531208729",
+  appId: "1:124531208729:web:52cb027f8f490267cab088",
+  measurementId: "G-HP69NBHD3Y"
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,12 +61,12 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
     EditProfileComponent,
     MessagingComponent,
     SchoolChatComponent
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
  	  AngularFirestoreModule,
     AngularFireDatabaseModule,
