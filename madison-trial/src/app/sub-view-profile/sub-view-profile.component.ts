@@ -13,7 +13,7 @@ export class SubViewProfileComponent implements OnInit {
 	// User data from auth
 	user: User = JSON.parse(localStorage.getItem('user'));
 	email = this.user.email;
-	name = this.user.displayName;
+	//name = this.user.displayName;
 	uid = this.user.uid;
 	photoUrl = this.user.photoURL;
 
@@ -23,6 +23,7 @@ export class SubViewProfileComponent implements OnInit {
   bio: string = '';
   education:string = '';
   teaching: string = '';
+  name: string = '';
 
 	userAtt: string = '';
 	sub: Sub;
@@ -31,10 +32,11 @@ export class SubViewProfileComponent implements OnInit {
   	this.fireServ.getUser(this.email);
   	this.userAtt = localStorage.getItem('userAtt');
   	this.sub = JSON.parse(this.userAtt);
+    this.name = this.sub.name;
   	this.district = this.sub.district;
 	  this.subject = this.sub.subject;
 	  this.bio = this.sub.bio;
-	  this.education = this.sub.bio;
+	  this.education = this.sub.education;
 	  this.teaching = this.sub.teaching;
   	console.log(this.sub);
   }
