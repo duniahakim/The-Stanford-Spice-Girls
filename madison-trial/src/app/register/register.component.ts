@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service'
+import { AuthService } from '../auth/auth.service';
 import { Router, Params } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
@@ -12,47 +12,42 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 	registerForm: FormGroup;
-  errorMessage: string = '';
-  successMessage: string = '';
+  successMessage = '';
+  errorMessage = '';
 
-  itemValue = '';
-  items: Observable<any[]>;
-
-  constructor(public db: AngularFireDatabase) {
-  	this.items = db.list('items').valueChanges();
+  constructor( 
+    public db: AngularFireDatabase,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.createForm();
   }
 
-  onSubmit() {
-    this.db.list('items').push({ content: this.itemValue});
-    this.itemValue = '';
+  createForm() {
+    this.registerForm = this.fb.group({
+      email: ['', Validators.required ],
+      password: ['',Validators.required],
+      name: [''],
+      district: [''],
+      subject: [''],
+      bio: [''],
+      education:[''],
+      teaching:['']
+    });
   }
-  // constructor(
-  //   public authService: AuthService,
-  //   private router: Router,
-  //   private fb: FormBuilder
-  // ) {
-  //   this.createForm();
-  //  }
 
-  //  createForm() {
-  //    this.registerForm = this.fb.group({
-  //      email: ['', Validators.required ],
-  //      password: ['',Validators.required]
-  //    });
-  //  }
-
-   // tryRegister(value){
-   //   this.authService.doRegister(value)
-   //   .then(res => {
-   //     console.log(res);
-   //     this.errorMessage = "";
-   //     this.successMessage = "Your account has been created";
-   //   }, err => {
-   //     console.log(err);
-   //     this.errorMessage = err.message;
-   //     this.successMessage = "";
-   //   })
-   // }
+ tryRegister(value){
+   this.authService.register(value)
+   .then(res => {
+     this.errorMessage = "";
+     this.successMessage = "Your account has been created! Please log in using the link below.";
+   }, err => {
+     console.log(err);
+     this.errorMessage = err.message;
+     this.successMessage = "";
+   })
+ }
 
 
   ngOnInit(): void {

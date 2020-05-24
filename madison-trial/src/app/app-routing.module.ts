@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { MessagingComponent } from './messaging/messaging.component';
@@ -20,10 +21,12 @@ import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/s
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
+import { ListingsFilterPipe } from './pipes/listings-filter.pipe';
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-
-	{ path: 'new-user', component: NewUserComponent }, // log in page
+	{ path: 'edit-profile', component: EditProfileComponent},
+	{ path: 'new-user', component: NewUserComponent }, // log in page for sub
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'school-home', component: SchoolHomeComponent},
 	{ path: 'school-login', component: SchoolLoginComponent},
@@ -42,6 +45,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [ListingsFilterPipe],
+  exports: [
+	  RouterModule,
+	  ListingsFilterPipe]
 })
 export class AppRoutingModule { }

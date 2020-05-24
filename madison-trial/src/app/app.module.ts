@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
@@ -24,8 +25,8 @@ import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.com
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 import { RegisterComponent } from './register/register.component';
 import { SchoolLoginComponent } from './school-login/school-login.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 @NgModule({
@@ -45,8 +46,10 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
     SubViewMatchesComponent,
     RegisterComponent,
     SchoolLoginComponent,
+    EditProfileComponent,
     MessagingComponent,
     SchoolChatComponent
+    
   ],
   imports: [
     BrowserModule,
