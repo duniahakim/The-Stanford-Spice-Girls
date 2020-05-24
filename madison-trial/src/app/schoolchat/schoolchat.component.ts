@@ -35,7 +35,7 @@ export class SchoolChatComponent{ //implements OnInit{
       this.name = this.user.displayName;
       this.email = this.user.email;
       console.log(this.schoolId);
-      this.userId = '3';
+      //this.userId = '3';
       this.schoolRef = af.list('/schools/' + this.schoolId);
       this.school = this.schoolRef.snapshotChanges().pipe(
       map(changes =>
@@ -43,13 +43,14 @@ export class SchoolChatComponent{ //implements OnInit{
       ));
 
       this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
-      //this.listOfTeachersRef.push({ id: 3 , name: "teacher3"});
       //this.teacherRef = af.list('/users/' + this.userId + '/schools');
       //this.teacherRef.push({ id: this.schoolId, name: "school name" });
       this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
+      this.listOfTeachersRef.push({ id: "oZhaf5u0wNPcKtzbptY09F3FflY2" , name: "teacher3"});
+
 
       
 
@@ -70,6 +71,7 @@ export class SchoolChatComponent{ //implements OnInit{
     // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
     //   return ref.limitToLast(5)
     // });
+    console.log(conversationID);
     this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
     map(changes =>

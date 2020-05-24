@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from 'firebase';
 
 
 @Component({
@@ -18,14 +19,14 @@ export class MessagingComponent{ //implements OnInit{
   msgVal: string = '';
   listOfSchoolsRef: AngularFireList<any>;
   listOfSchools: Observable<any[]>;
-  userId: number;
-  schoolId: number;
-  userRef: AngularFireList<any>;
-  user: Observable<any[]>;
+  userId: string = '';
+  schoolId: string = '';
+  //userRef: AngularFireList<any>;
+  user: User = JSON.parse(localStorage.getItem('user'));
   username: any;
 
   constructor(public af: AngularFireDatabase) {
-      this.userId = 3;
+      this.userId = this.user.uid;
       this.af = af;
       this.username = "user1";
 
@@ -35,11 +36,11 @@ export class MessagingComponent{ //implements OnInit{
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
 
-      this.userRef = af.list('/users/' + this.userId);
-      this.user = this.userRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
-      ));
+       this.listOfSchoolsRef.push({ id: "wu1JFKt5ufNTxcfr4hv9CqWQKTf2", name: "school1"});
+      // this.user = this.userRef.snapshotChanges().pipe(
+      // map(changes =>
+      //   changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
+      // ));
 
       // this.schoolId = 1;
       this.setupConversation();
@@ -48,6 +49,7 @@ export class MessagingComponent{ //implements OnInit{
   }
 
   setupConversation() {
+    console.log(this.userId);
     let conversationID;
     if (this.userId > this.schoolId) {
       conversationID = this.schoolId + '-' + this.userId;
@@ -58,6 +60,7 @@ export class MessagingComponent{ //implements OnInit{
     // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
     //   return ref.limitToLast(5)
     // });
+    console.log(conversationID);
     this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
     map(changes =>
@@ -72,7 +75,7 @@ export class MessagingComponent{ //implements OnInit{
   // }
 
   chatSend() {
-    this.itemsRef.push({ message: this.msgVal, name: "Ale", id: this.userId});
+    this.itemsRef.push({ message: this.msgVal, name: this.user.displayName, id: this.userId});
     this.msgVal = '';
 
     //scrolling to bottom of chat
