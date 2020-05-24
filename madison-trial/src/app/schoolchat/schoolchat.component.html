@@ -22,13 +22,19 @@ rel="stylesheet"
             </div>
           </div>
           <div class="inbox_chat">
-            <div class="channels" *ngFor="let item of listOfTeachers | async">
-              <button id={{item.id}} class="chat_list" name={{item.id}} value={{item.id}} (click)="pickedTeacher(item.id)">
+            <div class="channels" *ngFor="let item of listOfTeachers | async ">
+              <button *ngIf="item.id === this.userId" id={{item.id}} class="chat_list chosen" name={{item.id}} value={{item.id}} (click)="pickedTeacher(item.id)">
                 <div class="chat_people">
                   <div class="chat_ib" >
-                    <!-- <button class="school-convo" name={{item.id}} (click)="pickedSchool($event)"> -->
                       <h5> {{item.name}}</h5>
-                    <!-- </button> -->
+
+                  </div>
+                </div>
+              </button>
+              <button *ngIf="item.id !== this.userId" id={{item.id}} class="chat_list" name={{item.id}} value={{item.id}} (click)="pickedTeacher(item.id)">
+                <div class="chat_people">
+                  <div class="chat_ib" >
+                      <h5> {{item.name}}</h5>
 
                   </div>
                 </div>

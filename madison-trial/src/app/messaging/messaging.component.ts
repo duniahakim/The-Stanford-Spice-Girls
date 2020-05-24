@@ -11,6 +11,20 @@ import { User } from 'firebase';
   styleUrls: ['./messaging.component.css']
 })
 
+// Code to add new chat with a new school
+  //  this.af.object('/users/' + this.userId + '/schools/' + this.schoolId + '/').update({
+  //   id: this.schoolId,
+  //   name: this.schoolName,
+  //   date: Date.now()
+  // });
+  // this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
+  //    id: this.userId,
+  //    name: this.userName,
+  //    date: Date.now()
+  //  });
+
+
+
 export class MessagingComponent{ //implements OnInit{
   // items: Observable<any>;
   itemsRef: AngularFireList<any>;
@@ -35,14 +49,13 @@ export class MessagingComponent{ //implements OnInit{
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
-
-       this.listOfSchoolsRef.push({ id: "wu1JFKt5ufNTxcfr4hv9CqWQKTf2", name: "school1"});
       // this.user = this.userRef.snapshotChanges().pipe(
       // map(changes =>
       //   changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
       // ));
 
-      // this.schoolId = 1;
+
+
       this.setupConversation();
       //this.userRef.update( name, this.username );
 
@@ -75,8 +88,10 @@ export class MessagingComponent{ //implements OnInit{
   // }
 
   chatSend() {
-    this.itemsRef.push({ message: this.msgVal, name: this.user.displayName, id: this.userId});
-    this.msgVal = '';
+    if (this.msgVal) {
+      this.itemsRef.push({ message: this.msgVal, name: this.user.displayName, id: this.userId});
+      this.msgVal = '';
+    }
 
     //scrolling to bottom of chat
     // let messageHistory = document.getElementById('msg_history')
