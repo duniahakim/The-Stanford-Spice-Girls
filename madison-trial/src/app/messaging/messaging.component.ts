@@ -26,7 +26,6 @@ import { User } from 'firebase';
 
 
 export class MessagingComponent{ //implements OnInit{
-  // items: Observable<any>;
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
   name: any;
@@ -35,7 +34,6 @@ export class MessagingComponent{ //implements OnInit{
   listOfSchools: Observable<any[]>;
   userId: string = '';
   schoolId: string = '';
-  //userRef: AngularFireList<any>;
   user: User = JSON.parse(localStorage.getItem('user'));
   username: any;
 
@@ -44,20 +42,15 @@ export class MessagingComponent{ //implements OnInit{
       this.af = af;
       this.username = "user1";
 
-      this.listOfSchoolsRef = af.list('/users/' + this.userId + '/schools');
+      this.listOfSchoolsRef = af.list('/users/' + this.userId + '/schools', ref =>
+        ref.orderByChild('date')
+      );
       this.listOfSchools = this.listOfSchoolsRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
-      // this.user = this.userRef.snapshotChanges().pipe(
-      // map(changes =>
-      //   changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
-      // ));
-
-
 
       this.setupConversation();
-      //this.userRef.update( name, this.username );
 
   }
 
@@ -69,10 +62,7 @@ export class MessagingComponent{ //implements OnInit{
     } else {
       conversationID = this.userId + '-' + this.schoolId;
     }
-    //commented out part that only retrieves last few messages
-    // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
-    //   return ref.limitToLast(5)
-    // });
+
     console.log(conversationID);
     this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
@@ -81,16 +71,13 @@ export class MessagingComponent{ //implements OnInit{
     ));
   }
 
-  // chatSend(theirMessage: string) {
-  //   console.log(theirMessage);
-  //     this.itemsRef.push({ message: theirMessage, name: "Ale"});
-  //     this.msgVal = '';
-  // }
-
   chatSend() {
     if (this.msgVal) {
       this.itemsRef.push({ message: this.msgVal, name: this.user.displayName, id: this.userId});
       this.msgVal = '';
+      this.af.object('/users/' + this.userId + '/schools/' + this.schoolId + '/').update({
+         date: -Date.now()
+       });
     }
 
     //scrolling to bottom of chat

@@ -25,7 +25,6 @@ import { User } from 'firebase';
 
 
 export class SchoolChatComponent{ //implements OnInit{
-  // items: Observable<any>;
   email: string = '';
   name: string = '';
   itemsRef: AngularFireList<any>;
@@ -48,27 +47,22 @@ export class SchoolChatComponent{ //implements OnInit{
       this.af = af;
       this.name = this.user.displayName;
       this.email = this.user.email;
-      console.log(this.schoolId);
-      //this.userId = '3';
       this.schoolRef = af.list('/schools/' + this.schoolId);
       this.school = this.schoolRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
       ));
 
-      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
-      // this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers', ref =>
-      //   ref.orderByChild('date')
-      // );
+      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers', ref =>
+        ref.orderByChild('date')
+      );
 
-      //this.teacherRef = af.list('/users/' + this.userId + '/schools');
       this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
       console.log(this.listOfTeachers);
       this.setupConversation();
-      //this.userRef.update( name, this.username );
 
   }
 
@@ -79,11 +73,6 @@ export class SchoolChatComponent{ //implements OnInit{
     } else {
       conversationID = this.userId + '-' + this.schoolId;
     }
-    //commented out part that only retrieves last few messages
-    // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
-    //   return ref.limitToLast(5)
-    // });
-    console.log(conversationID);
     this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
     map(changes =>
@@ -91,22 +80,15 @@ export class SchoolChatComponent{ //implements OnInit{
     ));
   }
 
-  // chatSend(theirMessage: string) {
-  //   console.log(theirMessage);
-  //     this.itemsRef.push({ message: theirMessage, name: "Ale"});
-  //     this.msgVal = '';
-  // }
 
   chatSend() {
 
-    // updates = {'/schools/' + this.schoolId + '/teachers' + : Date.now() };
-    // firebase.database().ref().update(updates);
     if (this.msgVal) {
 
       this.itemsRef.push({ message: this.msgVal, name: this.name, id: this.schoolId});
       this.msgVal = '';
       this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
-         date: Date.now()
+         date: -Date.now()
        });
     }
 
