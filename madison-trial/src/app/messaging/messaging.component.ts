@@ -52,7 +52,7 @@ export class MessagingComponent{ //implements OnInit{
       ));
       this.listOfSchools.subscribe( schools => {
         if (schools.length !== 0) {
-          if (this.schooId === '') {
+          if (this.schoolId === '') {
             this.schoolId = schools[0]['id'];
             this.setupConversation();
           } else {
