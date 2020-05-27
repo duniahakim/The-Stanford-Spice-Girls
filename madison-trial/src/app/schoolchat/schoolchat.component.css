@@ -229,3 +229,7 @@ img {
 .chosen {
 	background-color: lightgray;
 }
+
+#no_conversation {
+	text-align: center;
+}

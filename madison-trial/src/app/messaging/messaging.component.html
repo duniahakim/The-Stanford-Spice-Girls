@@ -44,6 +44,9 @@ rel="stylesheet"
         </div>
         <div class="mesgs" >
           <div class="msg_history" id="msg_history">
+            <div *ngIf="this.schoolId === '' && this.showNoConversation" id="no_conversation">
+              <h3> You have not started any conversations! </h3>
+            </div>
             <li class="message" *ngFor="let item of items | async">
               <div
               *ngIf="
