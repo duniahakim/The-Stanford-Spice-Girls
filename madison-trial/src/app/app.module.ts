@@ -28,6 +28,7 @@ import { SchoolLoginComponent } from './school-login/school-login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
+import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
     SchoolLoginComponent,
     EditProfileComponent,
     MessagingComponent,
-    SchoolChatComponent
+    SchoolChatComponent,
+    IndividualListingComponent
     
   ],
   imports: [
