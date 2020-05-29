@@ -24,22 +24,6 @@ export class FirebaseService {
 	  });
 	}
 
-	getUser(email:string) {
-		var docRef = this.db.collection("users").doc(email);
-
-		docRef.get().toPromise().then(function(doc) {
-		    if (doc.exists) {
-		        localStorage.setItem('userAtt', JSON.stringify(doc.data()));
-
-		    } else {
-		        // doc.data() will be undefined in this case
-		        console.log("No such document!");
-		    }
-		}).catch(function(error) {
-		    console.log("Error getting document:", error);
-		});
-	}
-
 	createListing(value) {
 		return this.db.collection('listings').add({
 			subject: value.subject,
