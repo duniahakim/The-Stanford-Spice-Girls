@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 	registerForm: FormGroup;
   successMessage = '';
   errorMessage = '';
+  selectedValue: string = '';
 
   constructor( 
     public db: AngularFireDatabase,
@@ -29,11 +30,14 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required ],
       password: ['',Validators.required],
       name: [''],
+      type: [''],
+      grade: [''],
       district: [''],
       subject: [''],
       bio: [''],
       education:[''],
-      teaching:['']
+      teaching:[''],
+      other:['']
     });
   }
 

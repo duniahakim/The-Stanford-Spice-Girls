@@ -2,14 +2,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <p> Name: {{name}} </p>
-      <p> Email: {{email}} </p>
-      <p> district: {{district}} </p>
-	  <p> subject: {{subject}} </p>
-	  <p> bio: {{bio}} </p>
-	  <p> education: {{education}} </p>
-	  <p> teaching experience: {{teaching}} </p><br>
+      <p> Name: {{article.name}} </p>
+      <p> Email: {{article.email}} </p>
+      <p> district: {{article.district}} </p>
+  	  <p> subject: {{article.subject}} </p>
+  	  <p> bio: {{article.bio}} </p>
+  	  <p> education: {{article.education}} </p>
+  	  <p> teaching experience: {{article.teaching}} </p><br>
     </div>
   </div>
   <p href="/edit-profile" routerLink="/edit-profile">Edit profile</p>
 </div>
+<!-- <ul> <li *ngFor="let item of items | async"> {{ item.name }} </li> </ul>
+<p> {{article}} </p> -->

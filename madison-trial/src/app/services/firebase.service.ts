@@ -16,6 +16,7 @@ export class FirebaseService {
 	    nameToSearch: value.name.toLowerCase(),
 	    email: value.email,
 		district: value.district,
+		type: value.type,
 		subject: value.subject,
 		bio: value.bio,
 		education: value.education,
@@ -25,9 +26,11 @@ export class FirebaseService {
 
 	getUser(email:string) {
 		var docRef = this.db.collection("users").doc(email);
+
 		docRef.get().toPromise().then(function(doc) {
 		    if (doc.exists) {
 		        localStorage.setItem('userAtt', JSON.stringify(doc.data()));
+
 		    } else {
 		        // doc.data() will be undefined in this case
 		        console.log("No such document!");
