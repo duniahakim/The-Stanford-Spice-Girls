@@ -57,11 +57,6 @@ rel="stylesheet"
                 ></div>
               <ng-template #incoming_msg>
                 <div class="incoming_msg">
-                  <!-- <div class="incoming_msg_img">
-                    <img
-                    src="https://i.imgur.com/k2PZLZa.png"
-                    alt="User avatar"/>
-                  </div> -->
                   <div class="received_msg">
                     <div class="received_withd_msg">
                       <p>{{ item.message }}</p>
@@ -98,25 +93,3 @@ rel="stylesheet"
     </div>
   </div>
 </div>
-
-<!-- <head>
-  <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,500" rel="stylesheet">
-</head>
-<body>
-  <div class="row columns">
-    <div class="schools list" *ngFor="let item of listOfSchools | async">
-      <button class="school-convo" name={{item.id}} (click)="pickedSchool($event)">
-        {{item.name}}
-      </button>
-
-    </div>
-
-    <input type="text" id="message" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
-    <input type="file" id="file">
-    <div class="chat-container" *ngFor="let item of items | async">
-        <p>{{item.name}}</p>
-        <p>{{item.message}}</p>
-      </div>
-  </div>
-</body> -->

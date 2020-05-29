@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { User } from 'firebase';
 
 @Component({
   selector: 'app-messaging',
+  encapsulation: ViewEncapsulation.ShadowDom,
   templateUrl: './messaging.component.html',
   styleUrls: ['./messaging.component.css']
 })
