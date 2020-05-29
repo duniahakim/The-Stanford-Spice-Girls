@@ -49,6 +49,10 @@
             <label>Teaching history</label>
             <input type="text" class="form-control" formControlName="teaching">
           </div>
+<!--           <div class="form-group">
+            <label>Profile photo></label>
+            <input type="file" formControlname="photo" class="form-control"><br>
+          </div> -->
         </div>
 
         <!-- SCHOOL -->
@@ -57,6 +61,7 @@
             <label>School Name</label>
             <input type="text" class="form-control" formControlName="name">
           </div>
+          <p> You can add the rest of this info later if desired. </p>
           <div class="form-group">
             <label>District</label>
             <input type="text" class="form-control" formControlName="district">
@@ -67,8 +72,24 @@
           </div>
           <div class="form-group">
             <label>Other information (demographics, instructions for parking, etc.)</label>
-            <input type="text" class="form-control" formControlName="other">
+            <input type="text" class="form-control" size="50" formControlName="other">
           </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input id="searchTextField" type="text" size="50" formControlName="address">
+          </div>
+          <div class="form-group">
+            <label>Your school's website</label>
+            <input type="text" size="40" formControlName="website">
+          </div>
+          <div class="form-group">
+            <label>Average class size</label>
+            <input type="text" formControlName="classSize">
+          </div>
+<!--           <div class="form-group">
+            <label>Profile photo</label>
+            <input type="file" formControlname="photo" class="form-control"><br>
+          </div> -->
         </div>
 
         <button type="submit"(click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>

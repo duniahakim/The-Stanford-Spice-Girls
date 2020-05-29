@@ -11,17 +11,33 @@ export class FirebaseService {
 	constructor(public db: AngularFirestore) {}
 
 	createUser(value) {
-	  return this.db.collection('users').doc(value.email).set({
+		if (value.type == "school") { // Register a school 
+			return this.db.collection('users').doc(value.email).set({
 	    name: value.name,
 	    nameToSearch: value.name.toLowerCase(),
 	    email: value.email,
-		district: value.district,
-		type: value.type,
-		subject: value.subject,
-		bio: value.bio,
-		education: value.education,
-		teaching: value.teaching
+			district: value.district,
+			type: value.type,
+			bio: value.bio,
+			other: value.other,
+			address: value.address,
+			classSize: value.classSize,
+			website: value.website,
+			photo: value.photo
 	  });
+		} else {
+			return this.db.collection('users').doc(value.email).set({
+	    name: value.name,
+	    nameToSearch: value.name.toLowerCase(),
+	    email: value.email,
+			district: value.district,
+			type: value.type,
+			subject: value.subject,
+			bio: value.bio,
+			education: value.education,
+			teaching: value.teaching
+	  });
+		}  
 	}
 
 	createListing(value) {

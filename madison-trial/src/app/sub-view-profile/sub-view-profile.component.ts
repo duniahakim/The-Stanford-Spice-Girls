@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from  'firebase';
-import { FirebaseService } from '../services/firebase.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Sub } from '../sub-interface/sub'
@@ -22,7 +21,7 @@ export class SubViewProfileComponent implements OnInit {
   items: Observable<any[]>;
 
 
-  constructor(private fireServ: FirebaseService, public db: AngularFirestore) {
+  constructor(public db: AngularFirestore) {
 
     this.itemsCollection = db.collection<any>('users');
     this.items = this.itemsCollection.valueChanges();

@@ -35,7 +35,11 @@ export class RegisterComponent implements OnInit {
       bio: [''],
       education:[''],
       teaching:[''],
-      other:['']
+      other:[''],
+      address:[''],
+      website: [''],
+      classSize: [''],
+      photo: ['']
     });
   }
 
@@ -48,7 +52,6 @@ export class RegisterComponent implements OnInit {
      confirm(err.message);
    })
  }
-
 
   ngOnInit(): void {
   }
