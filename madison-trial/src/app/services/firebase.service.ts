@@ -11,30 +11,33 @@ export class FirebaseService {
 	constructor(public db: AngularFirestore) {}
 
 	createUser(value) {
-	  return this.db.collection('users').doc(value.email).set({
+		if (value.type == "school") { // Register a school 
+			return this.db.collection('users').doc(value.email).set({
 	    name: value.name,
 	    nameToSearch: value.name.toLowerCase(),
 	    email: value.email,
-		district: value.district,
-		subject: value.subject,
-		bio: value.bio,
-		education: value.education,
-		teaching: value.teaching
+			district: value.district,
+			type: value.type,
+			bio: value.bio,
+			other: value.other,
+			address: value.address,
+			classSize: value.classSize,
+			website: value.website,
+			photo: value.photo
 	  });
-	}
-
-	getUser(email:string) {
-		var docRef = this.db.collection("users").doc(email);
-		docRef.get().toPromise().then(function(doc) {
-		    if (doc.exists) {
-		        localStorage.setItem('userAtt', JSON.stringify(doc.data()));
-		    } else {
-		        // doc.data() will be undefined in this case
-		        console.log("No such document!");
-		    }
-		}).catch(function(error) {
-		    console.log("Error getting document:", error);
-		});
+		} else {
+			return this.db.collection('users').doc(value.email).set({
+	    name: value.name,
+	    nameToSearch: value.name.toLowerCase(),
+	    email: value.email,
+			district: value.district,
+			type: value.type,
+			subject: value.subject,
+			bio: value.bio,
+			education: value.education,
+			teaching: value.teaching
+	  });
+		}  
 	}
 
 	createListing(value) {

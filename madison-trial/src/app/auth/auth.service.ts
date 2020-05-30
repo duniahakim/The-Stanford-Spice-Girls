@@ -37,7 +37,7 @@ export class AuthService {
     var user = await this.afAuth.currentUser;
 
     user.updateProfile({
-      displayName: value.name
+      displayName: value.name,
     }).then(function() {
       console.log("name was added");
     }).catch(function(error) {

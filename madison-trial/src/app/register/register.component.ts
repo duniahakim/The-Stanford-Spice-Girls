@@ -12,8 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 	registerForm: FormGroup;
-  successMessage = '';
-  errorMessage = '';
+  selectedValue: string = '';
 
   constructor( 
     public db: AngularFireDatabase,
@@ -29,26 +28,30 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required ],
       password: ['',Validators.required],
       name: [''],
+      type: [''],
+      grade: [''],
       district: [''],
       subject: [''],
       bio: [''],
       education:[''],
-      teaching:['']
+      teaching:[''],
+      other:[''],
+      address:[''],
+      website: [''],
+      classSize: [''],
+      photo: ['']
     });
   }
 
  tryRegister(value){
    this.authService.register(value)
    .then(res => {
-     this.errorMessage = "";
-     this.successMessage = "Your account has been created! Please log in using the link below.";
+     confirm("Your account has been created! Please log in.");
    }, err => {
      console.log(err);
-     this.errorMessage = err.message;
-     this.successMessage = "";
+     confirm(err.message);
    })
  }
-
 
   ngOnInit(): void {
   }
