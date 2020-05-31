@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from  'firebase';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-school-view-open-listings',
@@ -6,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./school-view-open-listings.component.css']
 })
 export class SchoolViewOpenListingsComponent implements OnInit {
+  user: User = JSON.parse(localStorage.getItem('user'));
 
   ALL_LISTINGS: Object[] = [
     {id: 1, subject: 'Algebra II', grade: '10', date: 'Wednesday May 20, 2020', time: '11:20 AM', pay_rate: '$100/day', teacher_name: 'Sarah James', teacher_email: 'sarahjames@STRIVE.edu'},
@@ -15,10 +19,35 @@ export class SchoolViewOpenListingsComponent implements OnInit {
     {id: 5, subject: 'Art II', grade: '10', date: 'Friday May 29, 2020', time: '11:00 AM', pay_rate: '$140/day', teacher_name: 'Jayla Thomas', teacher_email: 'jaylathomas@STRIVE.edu'}
   ];
 
+ //LISTINGS: Observable<any[]>;
+ LISTINGS: Object[] =[];
+
   filter_by: string;
   searchString: string;
 
-  constructor() { }
+  article: any;
+  private listingsCollection: AngularFirestoreCollection<any>;
+  //listingsItems: Observable<any[]>;
+
+  private itemsCollection: AngularFirestoreCollection<any>;
+  items: Observable<any[]>;
+
+  constructor(public db: AngularFirestore) {
+    this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
+
+    this.listingsCollection.get().toPromise().then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+        db.collection('listings').doc(doc.id).ref.get().then((doc) => {
+          this.LISTINGS.push(doc.data());
+        });
+      });
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
+
+
+  }
 
   ngOnInit(): void {
   }

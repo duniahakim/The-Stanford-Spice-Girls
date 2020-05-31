@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FirebaseService {
+	user: User = JSON.parse(localStorage.getItem('user'));
 
 	constructor(public db: AngularFirestore) {}
 
@@ -27,9 +29,9 @@ export class FirebaseService {
 	  });
 		} else {
 			return this.db.collection('users').doc(value.email).set({
-	    name: value.name,
-	    nameToSearch: value.name.toLowerCase(),
-	    email: value.email,
+		    name: value.name,
+		    nameToSearch: value.name.toLowerCase(),
+		    email: value.email,
 			district: value.district,
 			type: value.type,
 			subject: value.subject,
@@ -41,14 +43,24 @@ export class FirebaseService {
 	}
 
 	createListing(value) {
-		return this.db.collection('listings').add({
+		// add listing metadata
+		const id = this.db.createId();
+		this.db.collection('listings').doc(id).set({
 			subject: value.subject,
 			grade: value.grade,
-			teachername: value.teachername,
-			teacherEmail: value.teacherEmail,
+			teacherName: value.teachername,
+			schoolName: this.user.displayName,
+			teacherEmail: value.teacheremail,
 			datetime: value.datetime,
 			pay: value.pay,
-			lessonplan: value.lessonplan
+			lessonplan: value.lessonplan,
+			status: "open",
+			schoolID: this.user.uid
 	  });
+
+		// add to school open listings 
+		return this.db.collection('users')
+			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
+
   	}
 }
