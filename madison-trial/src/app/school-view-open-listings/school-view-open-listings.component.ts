@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from  'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-school-view-open-listings',
@@ -19,18 +18,12 @@ export class SchoolViewOpenListingsComponent implements OnInit {
   //   {id: 5, subject: 'Art II', grade: '10', date: 'Friday May 29, 2020', time: '11:00 AM', pay_rate: '$140/day', teacher_name: 'Jayla Thomas', teacher_email: 'jaylathomas@STRIVE.edu'}
   // ];
 
- //LISTINGS: Observable<any[]>;
  LISTINGS: Object[] =[];
 
   filter_by: string;
   searchString: string;
 
-  article: any;
   private listingsCollection: AngularFirestoreCollection<any>;
-  //listingsItems: Observable<any[]>;
-
-  private itemsCollection: AngularFirestoreCollection<any>;
-  items: Observable<any[]>;
 
   constructor(public db: AngularFirestore) {
     this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
@@ -39,7 +32,9 @@ export class SchoolViewOpenListingsComponent implements OnInit {
       snapshot.forEach(doc => {
         console.log(doc.id, '=>', doc.data());
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-          this.LISTINGS.push(doc.data());
+          if (doc.data().status == "open") {
+            this.LISTINGS.push(doc.data());
+          }
         });
       });
     }).catch(err => {

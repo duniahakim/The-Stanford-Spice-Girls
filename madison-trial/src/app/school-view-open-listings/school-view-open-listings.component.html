@@ -32,8 +32,7 @@
 
       <!-- Show Listings in order by date of job -->
       <tbody *ngIf="LISTINGS">
-        <!-- listingsFilter : filter_by : searchString -->
-          <tr *ngFor="let listing of LISTINGS">
+          <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
               <td class="subject"> {{listing.subject}} </td>
               <td class="grade"> Grade {{listing.grade}} </td>
               <td class="date and time"> {{listing.datetime}} </td>

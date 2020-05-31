@@ -15,9 +15,9 @@ export class FirebaseService {
 	createUser(value) {
 		if (value.type == "school") { // Register a school
 			return this.db.collection('users').doc(value.email).set({
-	    name: value.name,
-	    nameToSearch: value.name.toLowerCase(),
-	    email: value.email,
+		    name: value.name,
+		    nameToSearch: value.name.toLowerCase(),
+		    email: value.email,
 			district: value.district,
 			type: value.type,
 			bio: value.bio,
@@ -56,12 +56,18 @@ export class FirebaseService {
 			lessonplan: value.lessonplan,
 			status: "open",
 			schoolID: this.user.uid,
-      id: id
+      		id: id
 	  });
 
 		// add to school open listings
 		return this.db.collection('users')
 			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
+  	}
 
+// users -> sub -> create collection confirmedListings 
+	// [id] is ID of listing
+  	addConfirmedListing(id: string) {
+  		return this.db.collection('users')
+			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
   	}
 }

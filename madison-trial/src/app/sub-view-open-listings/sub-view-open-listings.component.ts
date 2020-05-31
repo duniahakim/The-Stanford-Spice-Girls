@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-
+import { User } from  'firebase';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-sub-view-open-listings',
@@ -16,21 +17,46 @@ export class SubViewOpenListingsComponent implements OnInit {
   //   {id: 4, school_name:'Palo Alto High School', subject: 'English IV', grade: '12', date: 'Thursday May 28, 2020', time: '2:45 PM', pay_rate: '$130/day', teacher_name: 'Christina Marsh', teacher_email: 'chrismarsh@PAHS.edu'},
   //   {id: 5, school_name:'East High School', subject: 'Art II', grade: '10', date: 'Friday May 29, 2020', time: '11:00 AM', pay_rate: '$140/day', teacher_name: 'Jayla Thomas', teacher_email: 'jaylathomas@EHS.edu'}
   // ];
+  user: User = JSON.parse(localStorage.getItem('user'));
   LISTINGS: Object[] =[];
   filter_by: string;
   searchString: string;
   private listingsCollection: AngularFirestoreCollection<any>;
 
-  constructor(public db: AngularFirestore) {
+  constructor(
+    public db: AngularFirestore,
+    private fbServ: FirebaseService
+  ) {
     this.listingsCollection = db.collection('listings');
 
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
-        this.LISTINGS.push(doc.data());
+        if (doc.data().status == "open") {
+          this.LISTINGS.push(doc.data());
+        }
       });
     }).catch(err => {
-      console.log('Error getting listings in subb-view-open-listings', err);
+      console.log('Error getting listings in sub-view-open-listings', err);
     });
+  }
+
+  confirmListing(id: string) {
+    // change listing from open to closed & put id of sub into this listing
+    var docRef = this.db.collection('listings').doc(id);
+    docRef.update({
+      status: "closed",
+      subID: this.user.uid,
+      subName: this.user.displayName
+    });
+
+
+    // users -> sub -> create collection confirmedListings 
+    this.fbServ.addConfirmedListing(id).then(res => {
+      confirm("Success! You have confirmed the listing.");
+     }, err => {
+       console.log(err);
+       confirm(err.message);
+     });
   }
 
   ngOnInit(): void {

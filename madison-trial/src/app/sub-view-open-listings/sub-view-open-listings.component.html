@@ -42,7 +42,7 @@
             <td class="teacher_name"> {{listing.teacherName}} </td>
             <td class="teacher_email"> {{listing.teacherEmail}} </td>
             <p> Lesson Plan to be added later. </p>
-            <button> Confirm </button>
+            <button type="submit" (click)="confirmListing(listing.id)"> Confirm </button>
         </tr>
     </tbody>
 </table>
