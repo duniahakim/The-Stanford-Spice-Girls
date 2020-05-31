@@ -12,39 +12,87 @@
           <input type="password" class="form-control" formControlName="password">
         </div>
         <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control" formControlName="name">
+          <label> I am a... </label>
+          <select formControlName="type" [(ngModel)]="selectedValue">
+          <option value="sub">Substitute</option>
+          <option value="school">School</option>
+        </select>
         </div>
-<!--         <div class="form-group">
-        	<label> I am a... </label>
-        	<select id="group">
-  				<option value="sub">Substitute</option>
-  				<option value="school">School</option>
-  			</select>
-  		  </div> -->
-        <div class="form-group">
-          <label>Preferred District</label>
-          <input type="text" class="form-control" formControlName="district">
+
+        <!-- SUB -->
+        <div *ngIf = "selectedValue == 'sub'">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label>Preferred district</label>
+            <input type="text" class="form-control" formControlName="district">
+          </div>
+          <div class="form-group">
+            <label>Preferred subject</label>
+            <input type="text" class="form-control" formControlName="subject">
+          </div>
+          <div class="form-group">
+            <label>Preferred grade level </label>
+            <input type="number" class="form-control" formControlName="grade">
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <input type="text" class="form-control" formControlName="bio">
+          </div>
+          <div class="form-group">
+            <label>Education history</label>
+            <input type="text" class="form-control" formControlName="education">
+          </div>
+          <div class="form-group">
+            <label>Teaching history</label>
+            <input type="text" class="form-control" formControlName="teaching">
+          </div>
+<!--           <div class="form-group">
+            <label>Profile photo></label>
+            <input type="file" formControlname="photo" class="form-control"><br>
+          </div> -->
         </div>
-        <div class="form-group">
-          <label>Preferred subject/grade level</label>
-          <input type="text" class="form-control" formControlName="subject">
+
+        <!-- SCHOOL -->
+        <div *ngIf = "selectedValue == 'school'">
+          <div class="form-group">
+            <label>School Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <p> You can add the rest of this info later if desired. </p>
+          <div class="form-group">
+            <label>District</label>
+            <input type="text" class="form-control" formControlName="district">
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <input type="text" class="form-control" formControlName="bio">
+          </div>
+          <div class="form-group">
+            <label>Other information (demographics, instructions for parking, etc.)</label>
+            <input type="text" class="form-control" size="50" formControlName="other">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input id="searchTextField" type="text" size="50" formControlName="address">
+          </div>
+          <div class="form-group">
+            <label>Your school's website</label>
+            <input type="text" size="40" formControlName="website">
+          </div>
+          <div class="form-group">
+            <label>Average class size</label>
+            <input type="text" formControlName="classSize">
+          </div>
+<!--           <div class="form-group">
+            <label>Profile photo</label>
+            <input type="file" formControlname="photo" class="form-control"><br>
+          </div> -->
         </div>
-        <div class="form-group">
-          <label>Bio</label>
-          <input type="text" class="form-control" formControlName="bio">
-        </div>
-        <div class="form-group">
-          <label>Education history</label>
-          <input type="text" class="form-control" formControlName="education">
-        </div>
-        <div class="form-group">
-          <label>Teaching history</label>
-          <input type="text" class="form-control" formControlName="teaching">
-        </div>
+
         <button type="submit"(click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
-        <label class="error">{{errorMessage}}</label>
-        <label class="success">{{successMessage}}</label>
       </form>
     </div>
   </div>
