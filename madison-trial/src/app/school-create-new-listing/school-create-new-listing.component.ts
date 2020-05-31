@@ -19,14 +19,14 @@ export class SchoolCreateNewListingComponent implements OnInit {
       subject: ['', Validators.required ],
       grade: ['',Validators.required],
       teachername: ['', Validators.required],
-      teacherEmail: ['', Validators.required],
+      teacheremail: ['', Validators.required],
       datetime: ['', Validators.required],
       pay:['', Validators.required],
       lessonplan:['']
     });
   }
 
-  tryCreateListing(value){
+  tryCreateListing(value) {
    this.fbServ.createListing(value)
    .then(res => {
       confirm("Success! Listing has been created.");
