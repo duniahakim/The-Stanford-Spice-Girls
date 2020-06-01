@@ -1,10 +1,10 @@
 <body>
     <div class="form-group">
       <strong>Filter Listings By:</strong>
-  
+
       <select class="form-control"
               [(ngModel)]="filter_by">
-        <option></option>      
+        <option></option>
 
         <option value="subject">Subject</option>
         <option value="grade">Grade</option>
@@ -13,7 +13,7 @@
         <option value="pay_rate">Pay Rate</option>
         <option value="teacher_name">Teacher Name</option>
       </select>
-  
+
       <div class="input-group">
         <input
           type="text"
@@ -23,17 +23,16 @@
           [(ngModel)]="searchString"
         />
       </div>
-    </div>  
-  
+    </div>
+
     <table class="center">
       <thead>
           <h1>All Open Listings</h1>
       </thead>
-  
+
       <!-- Show Listings in order by date of job -->
-      <tbody *ngIf="ALL_LISTINGS">
-        <!-- listingsFilter : filter_by : searchString -->
-          <tr *ngFor="let listing of LISTINGS">
+      <tbody *ngIf="LISTINGS">
+          <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
               <td class="subject"> {{listing.subject}} </td>
               <td class="grade"> Grade {{listing.grade}} </td>
               <td class="date and time"> {{listing.datetime}} </td>
@@ -46,4 +45,3 @@
       </tbody>
   </table>
   </body>
-  
