@@ -1,51 +1,73 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FirebaseService {
+	user: User = JSON.parse(localStorage.getItem('user'));
 
 	constructor(public db: AngularFirestore) {}
 
 	createUser(value) {
-	  return this.db.collection('users').doc(value.email).set({
-	    name: value.name,
-	    nameToSearch: value.name.toLowerCase(),
-	    email: value.email,
-		district: value.district,
-		subject: value.subject,
-		bio: value.bio,
-		education: value.education,
-		teaching: value.teaching
+		if (value.type == "school") { // Register a school
+			return this.db.collection('users').doc(value.email).set({
+		    name: value.name,
+		    nameToSearch: value.name.toLowerCase(),
+		    email: value.email,
+			district: value.district,
+			type: value.type,
+			bio: value.bio,
+			other: value.other,
+			address: value.address,
+			classSize: value.classSize,
+			website: value.website,
+			photo: value.photo
 	  });
-	}
-
-	getUser(email:string) {
-		var docRef = this.db.collection("users").doc(email);
-		docRef.get().toPromise().then(function(doc) {
-		    if (doc.exists) {
-		        localStorage.setItem('userAtt', JSON.stringify(doc.data()));
-		    } else {
-		        // doc.data() will be undefined in this case
-		        console.log("No such document!");
-		    }
-		}).catch(function(error) {
-		    console.log("Error getting document:", error);
-		});
+		} else {
+			return this.db.collection('users').doc(value.email).set({
+		    name: value.name,
+		    nameToSearch: value.name.toLowerCase(),
+		    email: value.email,
+			district: value.district,
+			type: value.type,
+			subject: value.subject,
+			bio: value.bio,
+			education: value.education,
+			teaching: value.teaching
+	  });
+		}
 	}
 
 	createListing(value) {
-		return this.db.collection('listings').add({
+		// add listing metadata
+		const id = this.db.createId();
+		this.db.collection('listings').doc(id).set({
 			subject: value.subject,
 			grade: value.grade,
-			teachername: value.teachername,
-			teacherEmail: value.teacherEmail,
+			teacherName: value.teachername,
+			schoolName: this.user.displayName,
+			teacherEmail: value.teacheremail,
 			datetime: value.datetime,
 			pay: value.pay,
-			lessonplan: value.lessonplan
+			lessonplan: value.lessonplan,
+			status: "open",
+			schoolID: this.user.uid,
+      		id: id
 	  });
+
+		// add to school open listings
+		return this.db.collection('users')
+			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
+  	}
+
+// users -> sub -> create collection confirmedListings 
+	// [id] is ID of listing
+  	addConfirmedListing(id: string) {
+  		return this.db.collection('users')
+			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
   	}
 }
