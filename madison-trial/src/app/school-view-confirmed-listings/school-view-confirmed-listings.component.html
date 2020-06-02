@@ -40,6 +40,7 @@
               <td class="subName"> Substitute name: {{listing.subName}} </td>
               <td class="subID"> Substitute id for linking to profile: {{listing.subID}} </td>
               <p> Don't forget to add the lesson plan! </p>
+              <button (click)="createChat(listing.subID, listing.subName)">Start Chat with {{listing.subName}}</button>
           </tr>
       </tbody>
   </table>
