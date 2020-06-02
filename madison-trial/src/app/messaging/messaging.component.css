@@ -225,7 +225,10 @@ img {
 	margin: 12px 0px;
 }
 
-
 .chosen {
 	background-color: lightgray;
+}
+
+#no_conversation {
+	text-align: center;
 }
