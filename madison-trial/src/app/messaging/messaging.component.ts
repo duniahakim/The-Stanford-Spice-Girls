@@ -50,6 +50,12 @@ export class MessagingComponent{ //implements OnInit{
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
 
+      // this.user = this.userRef.snapshotChanges().pipe(
+      // map(changes =>
+      //   changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
+      // ));
+
+      // this.schoolId = 1;
       this.setupConversation();
 
   }

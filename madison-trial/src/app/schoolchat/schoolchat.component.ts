@@ -61,7 +61,12 @@ export class SchoolChatComponent{ //implements OnInit{
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
-      console.log(this.listOfTeachers);
+      
+
+
+      
+
+      // this.schoolId = 1;
       this.setupConversation();
 
   }
