@@ -51,6 +51,8 @@ export class NewUserComponent implements OnInit {
                 localStorage.setItem('type', "sub");
                 this.appC.changeHeader();
                 this.router.navigate(["/sub-home"]);
+              } else {
+                confirm("Error signing in");
               }
             }
           });
