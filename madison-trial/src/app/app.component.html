@@ -22,6 +22,7 @@
         <li><a *ngIf="schoolHeader" href="#" routerLink="/school-chat">Messages</a></li>
         <li><a *ngIf="schoolHeader" href="#" routerLink="/school-view-profile">Profile</a></li>
 
+        <li><a *ngIf="notLoggedIn" href="#" routerLink="/new-user">Log in</a></li>
         <li><a href="#" routerLink="{{routerLink}}" (click)="tryLogout()">{{loginstatus}}</a></li>
       </ul>
     </nav>

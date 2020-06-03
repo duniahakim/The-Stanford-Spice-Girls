@@ -9,7 +9,6 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 import { RegisterComponent } from './register/register.component';
 import { SchoolHomeComponent } from './school-home/school-home.component';
-import { SchoolLoginComponent } from './school-login/school-login.component';
 import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
 import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
 import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
 	{ path: 'new-user', component: NewUserComponent }, // log in page for sub
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'school-home', component: SchoolHomeComponent},
-	{ path: 'school-login', component: SchoolLoginComponent},
 	{ path: 'school-create-new-listing', component: SchoolCreateNewListingComponent},
 	{ path: 'school-view-open-listings', component: SchoolViewOpenListingsComponent},
 	{ path: 'school-view-confirmed-listings', component: SchoolViewConfirmedListingsComponent},

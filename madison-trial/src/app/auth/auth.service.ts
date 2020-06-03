@@ -18,7 +18,7 @@ export class AuthService {
     private fireServ: FirebaseService
   ) {
   	this.afAuth.authState.subscribe(user => {
-      if (user){
+      if (user) {
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {

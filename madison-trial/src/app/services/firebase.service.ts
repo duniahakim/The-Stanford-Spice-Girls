@@ -64,7 +64,7 @@ export class FirebaseService {
 			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
   	}
 
-// users -> sub -> create collection confirmedListings 
+	// users -> sub -> create collection confirmedListings 
 	// [id] is ID of listing
   	addConfirmedListing(id: string) {
   		return this.db.collection('users')
