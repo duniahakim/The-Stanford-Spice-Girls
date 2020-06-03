@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
@@ -27,6 +28,7 @@ import { User } from 'firebase';
 
 
 export class MessagingComponent{ //implements OnInit{
+  confirmedListings: {[key: string]: Object} = {};
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
   name: any;
@@ -38,8 +40,10 @@ export class MessagingComponent{ //implements OnInit{
   user: User = JSON.parse(localStorage.getItem('user'));
   username: any;
   showNoConversation: boolean = false;
+  showDropdown: boolean = false;
+  private listingsCollection: AngularFirestoreCollection<any>;
 
-  constructor(public af: AngularFireDatabase) {
+  constructor(public db: AngularFirestore, public af: AngularFireDatabase) {
       this.userId = this.user.uid;
       this.af = af;
       this.username = "user1";
@@ -61,15 +65,24 @@ export class MessagingComponent{ //implements OnInit{
           }
         }
        });
-
-      // this.user = this.userRef.snapshotChanges().pipe(
-      // map(changes =>
-      //   changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
-      // ));
-
-      // this.schoolId = 1;
       this.setupConversation();
+      this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
 
+      this.listingsCollection.get().toPromise().then(snapshot => {
+        snapshot.forEach(doc => {
+          db.collection('listings').doc(doc.id).ref.get().then((doc) => {
+            if (doc.data() && doc.data().status === "closed") {
+              this.confirmedListings[doc.data().schoolName] = doc.data();
+            }
+          });
+        });
+      }).catch(err => {
+        console.log('Error getting documents', err);
+      });
+  }
+
+  startConversation() {
+    this.showDropdown = true;
   }
 
   setupConversation() {
@@ -101,6 +114,21 @@ export class MessagingComponent{ //implements OnInit{
     //scrolling to bottom of chat
     // let messageHistory = document.getElementById('msg_history')
     // messageHistory.scrollTop = messageHistory.scrollHeight - messageHistory.clientHeight;
+  }
+
+  createChat(schoolId, schoolName) {
+    this.showDropdown = false;
+    this.af.object('/schools/' + schoolId + '/teachers/' + this.userId + '/').update({
+       id: this.userId,
+       name: this.user.displayName,
+       date: -Date.now()
+     });
+     this.af.object('/users/' + this.userId + '/schools/' + schoolId + '/').update({
+      id: schoolId,
+      name: schoolName,
+      date: -Date.now()
+    });
+    this.pickedSchool(schoolId);
   }
 
   // ngOnInit() {
