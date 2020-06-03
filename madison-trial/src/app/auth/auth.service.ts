@@ -49,7 +49,7 @@ export class AuthService {
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');
-    localStorage.removeItem('userAtt');
+    localStorage.removeItem("type");
   }
 
   get isLoggedIn(): boolean {

@@ -22,11 +22,12 @@ export class AppComponent {
     public  afAuth:  AngularFireAuth
   ) {
     this.afAuth.authState.subscribe(user => {
+      // && this.authService.isLoggedIn
       if (user) {
         this.notLoggedIn = false;
         if (localStorage.getItem('type') == "school") {
           this.changeSchoolHeader();
-        } else {
+        } else if (localStorage.getItem('type') == "sub") {
           this.changeHeader();
         }
       }
