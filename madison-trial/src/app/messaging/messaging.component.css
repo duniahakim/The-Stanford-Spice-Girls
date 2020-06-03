@@ -1,12 +1,3 @@
-.login {
-	position: absolute;
-	width: 100%;
-	max-width: 600px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
 .container {
 	max-width: 1170px;
 	margin: auto;
@@ -52,7 +43,7 @@ img {
 }
 
 .channel_heading h4 {
-	color: #05728f;
+	color: #666266;
 	font-size: 21px;
 	margin: auto;
 }
@@ -170,11 +161,11 @@ img {
 }
 
 .sent_msg p {
-	background: #05728f none repeat scroll 0 0;
+	background: #DCD3D8 none repeat scroll 0 0;
 	border-radius: 3px;
 	font-size: 14px;
 	margin: 0;
-	color: #fff;
+	color: #646464;
 	padding: 5px 10px 5px 12px;
 	width: 100%;
 }
@@ -205,7 +196,7 @@ img {
 }
 
 .msg_send_btn {
-	background: #05728f none repeat scroll 0 0;
+	background: #666266 none repeat scroll 0 0;
 	border: medium none;
 	border-radius: 50%;
 	color: #fff;
@@ -234,71 +225,10 @@ img {
 	margin: 12px 0px;
 }
 
-.chosenSchool {
-	background-color: #05728f;
+.chosen {
+	background-color: lightgray;
 }
 
-
-
-/* new tutorial  */
-/* input#message {
-    background:none;
-    border:none;
-    border-bottom: 1px solid #4C4C4C;
-    outline:none;
-    box-shadow:none;
-    color: white;
-    font-size:1.6em;
-    font-weight:300;
-    margin-bottom: 3em;
-    padding:1.2em 0;
+#no_conversation {
+	text-align: center;
 }
-
-.chat-container {
-    display:block;
-    width:100%;
-}
-.chat-container:nth-child(4) {
-    opacity: .8;
-}
-.chat-container:nth-child(3) {
-    opacity: .6;
-}
-.chat-container:nth-child(2) {
-    opacity: .4;
-}
-
-.chat-container a {
-    text-transform: uppercase;
-    font-weight:bold;
-    color:#816A98;
-    font-size:.8em;
-    letter-spacing:2px;
-}
-
-.chat-container p {
-    background:#323035;
-    padding:1.1em;
-    color:white;
-    margin: 5px 0 10px 0;
-}
-
-body {
-    background-color:#242226;
-    padding-top: 5em;
-}
-
-* {
-    font-family: 'Raleway';
-}
-
-button {
-    background:#4267B2;
-    color:white;
-    padding: 1.2em;
-    width:300px;
-    text-align:center;
-    font-size:1.2em;
-    margin-bottom: 30px;
-    cursor:pointer;
-} */

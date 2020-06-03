@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from  'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-school-view-confirmed-listings',
@@ -26,7 +28,7 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
 
   private listingsCollection: AngularFirestoreCollection<any>;
 
-  constructor(public db: AngularFirestore) {
+  constructor(public db: AngularFirestore, public af: AngularFireDatabase, private router: Router) {
     this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
 
     this.listingsCollection.get().toPromise().then(snapshot => {
@@ -40,6 +42,27 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
     }).catch(err => {
       console.log('Error getting documents', err);
     });
+  }
+
+  createChat(subId: any, subName: any) {
+    let conversationId;
+    if (this.user.uid > subId) {
+      conversationId = subId + '-' + this.user.uid;
+    } else {
+      conversationId =  this.user.uid + '-' + subId;
+    }
+    this.af.object('/schools/' + this.user.uid + '/teachers/' + subId + '/').update({
+      id: this.user.uid,
+      name: this.user.displayName,
+      date: Date.now()
+    })
+    this.af.object('/users/' + subId + '/schools/' + this.user.uid + '/').update({
+      id: subId,
+      name: subName,
+      date: Date.now()
+    })
+    this.af.object('/messages/' + conversationId + '/');
+    this.router.navigate(['school-chat']);
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,12 +7,25 @@ import { User } from 'firebase';
 
 @Component({
   selector: 'app-schoolchat',
+  encapsulation: ViewEncapsulation.ShadowDom,
   templateUrl: './schoolchat.component.html',
   styleUrls: ['./schoolchat.component.css']
 })
 
+// Code for startinng new chat with new teacher
+ //   this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
+ //    id: this.userId,
+ //    name: this.userName,
+ //    date: Date.now()
+ //  });
+ //  this.af.object('/users/' + this.userId + '/schools/' + this.schoolId + '/').update({
+ //   id: this.schoolId,
+ //   name: this.schoolName,
+ //   date: Date.now()
+ // });
+
+
 export class SchoolChatComponent{ //implements OnInit{
-  // items: Observable<any>;
   email: string = '';
   name: string = '';
   itemsRef: AngularFireList<any>;
@@ -26,37 +39,41 @@ export class SchoolChatComponent{ //implements OnInit{
   schoolRef: AngularFireList<any>;
   school: Observable<any[]>;
   user: User = JSON.parse(localStorage.getItem('user'));
-  newSchoolRef: AngularFireList<any>
-  
+  newSchoolRef: AngularFireList<any>;
+  showNoConversation: boolean = false;
+
+
 
   constructor(public af: AngularFireDatabase) {
       this.schoolId = this.user.uid;
       this.af = af;
       this.name = this.user.displayName;
       this.email = this.user.email;
-      console.log(this.schoolId);
-      this.userId = '3';
       this.schoolRef = af.list('/schools/' + this.schoolId);
       this.school = this.schoolRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
       ));
+      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers', ref =>
+        ref.orderByChild('date')
+      );
 
-      this.listOfTeachersRef = af.list('/schools/' + this.schoolId + '/teachers');
-      //this.listOfTeachersRef.push({ id: 3 , name: "teacher3"});
-      //this.teacherRef = af.list('/users/' + this.userId + '/schools');
-      //this.teacherRef.push({ id: this.schoolId, name: "school name" });
       this.listOfTeachers = this.listOfTeachersRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
 
-      
-
-      // this.schoolId = 1;
-      this.setupConversation();
-      //this.userRef.update( name, this.username );
-
+      this.listOfTeachers.subscribe( teachers => {
+        if (teachers.length !== 0) {
+          if (this.userId === '') {
+            this.userId = teachers[0]['id'];
+            this.setupConversation();
+          } else {
+            this.userId = teachers[0]['id'];
+          }
+        }
+       });
+       this.setupConversation();
   }
 
   setupConversation() {
@@ -66,10 +83,7 @@ export class SchoolChatComponent{ //implements OnInit{
     } else {
       conversationID = this.userId + '-' + this.schoolId;
     }
-    //commented out part that only retrieves last few messages
-    // this.itemsRef = this.af.list('/messages/' + conversationID, ref => {
-    //   return ref.limitToLast(5)
-    // });
+
     this.itemsRef = this.af.list('/messages/' + conversationID);
     this.items = this.itemsRef.snapshotChanges().pipe(
     map(changes =>
@@ -77,15 +91,17 @@ export class SchoolChatComponent{ //implements OnInit{
     ));
   }
 
-  // chatSend(theirMessage: string) {
-  //   console.log(theirMessage);
-  //     this.itemsRef.push({ message: theirMessage, name: "Ale"});
-  //     this.msgVal = '';
-  // }
 
   chatSend() {
-    this.itemsRef.push({ message: this.msgVal, name: this.name, id: this.schoolId});
-    this.msgVal = '';
+    if (this.msgVal && this.userId !== '') {
+      this.itemsRef.push({ message: this.msgVal, name: this.name, id: this.schoolId});
+      this.msgVal = '';
+      this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
+         date: -Date.now()
+       });
+    } else if (this.userId === '') {
+      this.showNoConversation = true;
+    }
 
     //scrolling to bottom of chat
     // let messageHistory = document.getElementById('msg_history')
