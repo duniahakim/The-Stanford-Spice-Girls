@@ -20,6 +20,12 @@ rel="stylesheet"
             <div class="channel_heading">
               <h4>Teachers</h4>
             </div>
+            <button (click)="startConversation()" class="dropbtn">Start Convo</button>
+            <div class="dropdown" *ngIf="this.showDropdown">
+              <div *ngFor="let listing of confirmedListings | keyvalue" id="myDropdown" class="dropdown-content">
+                <button (click)="createChat(listing.value.subID, listing.value.teacherName)"> {{listing.value.teacherName}}</button>
+              </div>
+            </div>
           </div>
           <div class="inbox_chat">
             <div class="channels" *ngFor="let item of listOfTeachers | async ">

@@ -54,12 +54,12 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
     this.af.object('/schools/' + this.user.uid + '/teachers/' + subId + '/').update({
       id: this.user.uid,
       name: this.user.displayName,
-      date: Date.now()
+      date: -Date.now()
     })
     this.af.object('/users/' + subId + '/schools/' + this.user.uid + '/').update({
       id: subId,
       name: subName,
-      date: Date.now()
+      date: -Date.now()
     })
     this.af.object('/messages/' + conversationId + '/');
     this.router.navigate(['school-chat']);

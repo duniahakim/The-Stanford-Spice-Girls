@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
@@ -16,16 +17,17 @@ import { User } from 'firebase';
  //   this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
  //    id: this.userId,
  //    name: this.userName,
- //    date: Date.now()
+ //    date: -Date.now()
  //  });
  //  this.af.object('/users/' + this.userId + '/schools/' + this.schoolId + '/').update({
  //   id: this.schoolId,
  //   name: this.schoolName,
- //   date: Date.now()
+ //   date: -Date.now()
  // });
 
 
 export class SchoolChatComponent{ //implements OnInit{
+  confirmedListings: {[key: string]: Object} = {};
   email: string = '';
   name: string = '';
   itemsRef: AngularFireList<any>;
@@ -41,10 +43,13 @@ export class SchoolChatComponent{ //implements OnInit{
   user: User = JSON.parse(localStorage.getItem('user'));
   newSchoolRef: AngularFireList<any>;
   showNoConversation: boolean = false;
+  showDropdown: boolean = false;
+  private listingsCollection: AngularFirestoreCollection<any>;
 
 
 
-  constructor(public af: AngularFireDatabase) {
+
+  constructor(public db: AngularFirestore, public af: AngularFireDatabase) {
       this.schoolId = this.user.uid;
       this.af = af;
       this.name = this.user.displayName;
@@ -74,7 +79,26 @@ export class SchoolChatComponent{ //implements OnInit{
         }
        });
        this.setupConversation();
+
+       this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
+
+       this.listingsCollection.get().toPromise().then(snapshot => {
+         snapshot.forEach(doc => {
+           db.collection('listings').doc(doc.id).ref.get().then((doc) => {
+             if (doc.data() && doc.data().status === "closed") {
+               this.confirmedListings[doc.data().teacherName] = doc.data();
+             }
+           });
+         });
+       }).catch(err => {
+         console.log('Error getting documents', err);
+       });
   }
+
+  startConversation() {
+    this.showDropdown = true;
+  }
+
 
   setupConversation() {
     let conversationID;
@@ -106,6 +130,21 @@ export class SchoolChatComponent{ //implements OnInit{
     //scrolling to bottom of chat
     // let messageHistory = document.getElementById('msg_history')
     // messageHistory.scrollTop = messageHistory.scrollHeight - messageHistory.clientHeight;
+  }
+
+  createChat(subID, subName) {
+    this.showDropdown = false;
+    this.af.object('/schools/' + this.schoolId + '/teachers/' + subID + '/').update({
+       id: subID,
+       name: subName,
+       date: -Date.now()
+     });
+     this.af.object('/users/' + subID + '/schools/' + this.schoolId + '/').update({
+      id: this.schoolId,
+      name: this.name,
+      date: -Date.now()
+    });
+    this.pickedTeacher(subID);
   }
 
   // ngOnInit() {
