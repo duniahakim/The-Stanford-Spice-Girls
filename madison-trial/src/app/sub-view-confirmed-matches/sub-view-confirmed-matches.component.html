@@ -28,16 +28,17 @@
       </thead>
   
       <!-- Show Listings in order by date of job -->
-      <tbody *ngIf="CONFIRMED_LISTINGS">
-          <tr *ngFor="let listing of CONFIRMED_LISTINGS | listingsFilter : filter_by : searchString">
-              <td class="school_name">{{listing.school_name}}</td>
+      <tbody *ngIf="LISTINGS">
+          <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
+              <td class="school_name">{{listing.schoolName}}</td>
               <td class="subject"> {{listing.subject}} </td>
               <td class="grade"> Grade {{listing.grade}} </td>
-              <td class="date"> {{listing.date}} </td>
-              <td class="time"> {{listing.time}} </td>
-              <td class="pay_rate"> {{listing.pay_rate}} </td>
-              <td class="teacher_name"> {{listing.teacher_name}} </td>
-              <td class="teacher_email"> {{listing.teacher_email}} </td>
+              <td class="date and time"> {{listing.datetime}} </td>
+              <td class="pay_rate"> {{listing.pay}} </td>
+              <td class="teacher_name"> {{listing.teacherName}} </td>
+              <td class="teacher_email"> {{listing.teacherEmail}} </td>
+              <td class="schoolID">School for linking to profile {{listing.schoolID}}</td>
+              <button (click)="createChat(listing.schoolID, listing.schoolName)" class="btn btn-default">Chat with {{listing.schoolName}}</button>
               <p> Lesson Plan to be added later. </p>
           </tr>
       </tbody>
