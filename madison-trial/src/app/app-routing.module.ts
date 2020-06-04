@@ -22,6 +22,7 @@ import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.com
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
 import { ListingsFilterPipe } from './pipes/listings-filter.pipe';
+import { IndividualListingComponent } from './individual-listing/individual-listing.component'
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -40,7 +41,8 @@ const routes: Routes = [
 	{ path: 'sub-view-profile', component: SubViewProfileComponent},
 	{ path: 'sub-view-matches', component: SubViewMatchesComponent},
 	{ path: 'messaging', component: MessagingComponent },
-	{ path: 'school-chat', component: SchoolChatComponent}
+	{ path: 'school-chat', component: SchoolChatComponent},
+	{ path: 'individual-listing', component: IndividualListingComponent}
 ];
 
 @NgModule({
