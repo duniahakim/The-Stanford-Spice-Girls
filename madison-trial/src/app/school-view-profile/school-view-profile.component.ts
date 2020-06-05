@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./school-view-profile.component.css']
 })
 export class SchoolViewProfileComponent implements OnInit {
+  editState: boolean = false;
+  field: string;
+
   user: User = JSON.parse(localStorage.getItem('user'));
   email = this.user.email;
   article: any;
@@ -26,6 +29,43 @@ export class SchoolViewProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  editItem(event, field: string){
+    this.editState = true;
+    this.field = field;
+  }
+
+  updateField(field: string){
+    var docRef = this.db.collection('users').doc(this.email);
+    if(field == 'email')
+    docRef.update({
+      email: (<HTMLInputElement>document.getElementById("email")).value
+    });
+    if(field == 'district')
+    docRef.update({
+      district: (<HTMLInputElement>document.getElementById("district")).value
+    });
+    if(field == 'website')
+    docRef.update({
+      website: (<HTMLInputElement>document.getElementById("website")).value
+    });
+    if(field == 'address')
+    docRef.update({
+      address: (<HTMLInputElement>document.getElementById("address")).value
+    });
+    if(field == 'bio')
+    docRef.update({
+      bio: (<HTMLInputElement>document.getElementById("bio")).value
+    });
+    if(field == 'other')
+    docRef.update({
+      other: (<HTMLInputElement>document.getElementById("other")).value
+    });
+    if(field == 'classSize')
+    docRef.update({
+      classSize: (<HTMLInputElement>document.getElementById("classSize")).value
+    });
   }
 
 }
