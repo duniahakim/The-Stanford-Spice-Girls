@@ -27,7 +27,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
   // //   {id: 5, sub_name: 'Ale Rodriguez', subject: 'Art II', grade: '10', date: 'Friday May 29, 2020', time: '11:00 AM', pay_rate: '$140/day', teacher_name: 'Jayla Thomas', teacher_email: 'jaylathomas@STRIVE.edu'}
   // // ];
 
-  
+
 
   //subID
   filter_by: string;
@@ -42,17 +42,17 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-          //if (doc.data().status == "closed") {
-          this.LISTINGS.push(doc.data());
-          //}
+          if (doc.data().status === "closed") {
+            this.LISTINGS.push(doc.data());
+          }
         });
       });
     }).catch(err => {
       console.log('Error getting documents', err);
     });
 
-    
-    
+
+
   }
 
   createChat(schoolId: any, schoolName: any) {
@@ -79,7 +79,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     // this.subsRef = this.af.list('/users/' + this.user.uid + '/schools/' + schoolId);
     // this.schoolRef = this.af.list('/schools/' + schoolId + '/teachers/');
     this.router.navigate(['/messaging']);
-    
+
 
   }
 
