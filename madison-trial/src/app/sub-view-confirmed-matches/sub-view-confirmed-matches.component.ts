@@ -56,6 +56,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
   }
 
   createChat(schoolId: any, schoolName: any) {
+    console.log(schoolId, schoolName);
     let conversationId;
     if (schoolId > this.user.uid) {
       conversationId = this.user.uid + '-' + schoolId;
@@ -64,13 +65,13 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     }
 
     this.af.object('/schools/' + schoolId + '/teachers' + this.user.uid + '/').update({
-      id: schoolId,
-      name: schoolName,
+      id: this.user.uid,
+      name: this.user.displayName,
       date: Date.now()
     });
     this.af.object('/users/' + this.user.uid + '/schools/' + schoolId + '/').update({
-      id: this.user.uid,
-      name: this.user.displayName,
+      id: schoolId,
+      name: schoolName,
       date: Date.now()
     });
     this.af.object('/messages/' + conversationId + '/');
