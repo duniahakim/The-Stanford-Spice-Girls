@@ -61,13 +61,13 @@ export class FirebaseService {
 
 		// add to school open listings
 		return this.db.collection('users')
-			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
+			.doc(this.user.email).collection("listings").doc(id).set({});
   	}
 
 	// users -> sub -> create collection confirmedListings 
 	// [id] is ID of listing
   	addConfirmedListing(id: string) {
   		return this.db.collection('users')
-			.doc(this.user.email).collection("listings").doc(id).set({}, {merge: true});
+			.doc(this.user.email).collection("listings").doc(id).set({});
   	}
 }
