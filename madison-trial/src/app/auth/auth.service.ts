@@ -18,7 +18,7 @@ export class AuthService {
     private fireServ: FirebaseService
   ) {
   	this.afAuth.authState.subscribe(user => {
-      if (user){
+      if (user) {
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {
@@ -49,7 +49,7 @@ export class AuthService {
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');
-    localStorage.removeItem('userAtt');
+    localStorage.removeItem("type");
   }
 
   get isLoggedIn(): boolean {

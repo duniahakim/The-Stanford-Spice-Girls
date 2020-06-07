@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./school-home.component.css']
 })
 export class SchoolHomeComponent implements OnInit {
-
+  
+  schoolName = JSON.parse(localStorage.getItem('user')).displayName;
+  
   constructor() { }
 
   ngOnInit(): void {

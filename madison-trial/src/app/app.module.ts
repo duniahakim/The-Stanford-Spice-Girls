@@ -24,10 +24,10 @@ import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/s
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 import { RegisterComponent } from './register/register.component';
-import { SchoolLoginComponent } from './school-login/school-login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
+import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +45,10 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
     SubViewProfileComponent,
     SubViewMatchesComponent,
     RegisterComponent,
-    SchoolLoginComponent,
     EditProfileComponent,
     MessagingComponent,
-    SchoolChatComponent
+    SchoolChatComponent,
+    IndividualListingComponent
     
   ],
   imports: [

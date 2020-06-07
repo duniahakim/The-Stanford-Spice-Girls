@@ -9,7 +9,6 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 
 import { RegisterComponent } from './register/register.component';
 import { SchoolHomeComponent } from './school-home/school-home.component';
-import { SchoolLoginComponent } from './school-login/school-login.component';
 import { SchoolCreateNewListingComponent } from './school-create-new-listing/school-create-new-listing.component';
 import { SchoolViewOpenListingsComponent } from './school-view-open-listings/school-view-open-listings.component';
 import { SchoolViewConfirmedListingsComponent } from './school-view-confirmed-listings/school-view-confirmed-listings.component';
@@ -22,6 +21,7 @@ import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.com
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 
 import { ListingsFilterPipe } from './pipes/listings-filter.pipe';
+import { IndividualListingComponent } from './individual-listing/individual-listing.component'
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -29,7 +29,6 @@ const routes: Routes = [
 	{ path: 'new-user', component: NewUserComponent }, // log in page for sub
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'school-home', component: SchoolHomeComponent},
-	{ path: 'school-login', component: SchoolLoginComponent},
 	{ path: 'school-create-new-listing', component: SchoolCreateNewListingComponent},
 	{ path: 'school-view-open-listings', component: SchoolViewOpenListingsComponent},
 	{ path: 'school-view-confirmed-listings', component: SchoolViewConfirmedListingsComponent},
@@ -40,7 +39,8 @@ const routes: Routes = [
 	{ path: 'sub-view-profile', component: SubViewProfileComponent},
 	{ path: 'sub-view-matches', component: SubViewMatchesComponent},
 	{ path: 'messaging', component: MessagingComponent },
-	{ path: 'school-chat', component: SchoolChatComponent}
+	{ path: 'school-chat', component: SchoolChatComponent},
+	{ path: 'individual-listing', component: IndividualListingComponent}
 ];
 
 @NgModule({
