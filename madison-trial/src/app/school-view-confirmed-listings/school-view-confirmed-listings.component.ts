@@ -34,7 +34,7 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-          if (doc.data().status == "closed") {
+          if (doc.data().status === "closed") {
             this.LISTINGS.push(doc.data());
           }
         });
@@ -45,6 +45,7 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
   }
 
   createChat(subId: any, subName: any) {
+    console.log(subId, subName);
     let conversationId;
     if (this.user.uid > subId) {
       conversationId = subId + '-' + this.user.uid;
@@ -52,13 +53,13 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
       conversationId =  this.user.uid + '-' + subId;
     }
     this.af.object('/schools/' + this.user.uid + '/teachers/' + subId + '/').update({
-      id: this.user.uid,
-      name: this.user.displayName,
+      id: subId,
+      name: subName,
       date: Date.now()
     })
     this.af.object('/users/' + subId + '/schools/' + this.user.uid + '/').update({
-      id: subId,
-      name: subName,
+      id: this.user.uid,
+      name: this.user.displayName,
       date: Date.now()
     })
     this.af.object('/messages/' + conversationId + '/');

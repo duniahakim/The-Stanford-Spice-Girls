@@ -27,7 +27,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
   // //   {id: 5, sub_name: 'Ale Rodriguez', subject: 'Art II', grade: '10', date: 'Friday May 29, 2020', time: '11:00 AM', pay_rate: '$140/day', teacher_name: 'Jayla Thomas', teacher_email: 'jaylathomas@STRIVE.edu'}
   // // ];
 
-  
+
 
   //subID
   filter_by: string;
@@ -42,20 +42,21 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-          //if (doc.data().status == "closed") {
-          this.LISTINGS.push(doc.data());
-          //}
+          if (doc.data().status === "closed") {
+            this.LISTINGS.push(doc.data());
+          }
         });
       });
     }).catch(err => {
       console.log('Error getting documents', err);
     });
 
-    
-    
+
+
   }
 
   createChat(schoolId: any, schoolName: any) {
+    console.log(schoolId, schoolName);
     let conversationId;
     if (schoolId > this.user.uid) {
       conversationId = this.user.uid + '-' + schoolId;
@@ -64,13 +65,13 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     }
 
     this.af.object('/schools/' + schoolId + '/teachers' + this.user.uid + '/').update({
-      id: schoolId,
-      name: schoolName,
+      id: this.user.uid,
+      name: this.user.displayName,
       date: Date.now()
     });
     this.af.object('/users/' + this.user.uid + '/schools/' + schoolId + '/').update({
-      id: this.user.uid,
-      name: this.user.displayName,
+      id: schoolId,
+      name: schoolName,
       date: Date.now()
     });
     this.af.object('/messages/' + conversationId + '/');
@@ -78,7 +79,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     // this.subsRef = this.af.list('/users/' + this.user.uid + '/schools/' + schoolId);
     // this.schoolRef = this.af.list('/schools/' + schoolId + '/teachers/');
     this.router.navigate(['/messaging']);
-    
+
 
   }
 
