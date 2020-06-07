@@ -41,7 +41,7 @@ export class SubViewOpenListingsComponent implements OnInit {
     });
   }
 
-  confirmListing(id: string) {
+  confirmListing(id: any) {
     // change listing from open to closed & put id of sub into this listing
     var docRef = this.db.collection('listings').doc(id);
     docRef.update({

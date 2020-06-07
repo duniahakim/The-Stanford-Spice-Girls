@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class SchoolViewProfileComponent implements OnInit {
   editState: boolean = false;
   field: string;
+  addy: string;
 
   user: User = JSON.parse(localStorage.getItem('user'));
   email = this.user.email;
@@ -27,8 +28,15 @@ export class SchoolViewProfileComponent implements OnInit {
         this.article = doc.data();
       });
   }
+  
 
   ngOnInit(): void {
+  }
+
+  addURL(){
+    console.log("hello");
+    this.addy = this.article.address;
+    (<HTMLInputElement>document.getElementById("frame")).src = "https://www.google.com/maps?q=" + this.addy + "&output=embed";
   }
 
   editItem(event, field: string){

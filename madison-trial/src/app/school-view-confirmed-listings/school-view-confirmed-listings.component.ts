@@ -34,7 +34,7 @@ export class SchoolViewConfirmedListingsComponent implements OnInit {
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-          if (doc.data().status == "closed") {
+          if (doc.data().status === "closed") {
             this.LISTINGS.push(doc.data());
           }
         });

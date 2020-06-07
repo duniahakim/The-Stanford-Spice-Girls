@@ -1,6 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
 <h1 class="header">Welcome, {{article.name}}!</h1>
 <div class="container">
   <div class="row">
@@ -21,6 +22,7 @@
         </form>
       </div>
       <p> Address: {{article.address}} <i (click)="editItem($event, 'address')" class="fa fa-pencil"></i></p>
+      <iframe id="frame" src="" >{{addURL()}}</iframe>
       <div *ngIf="editState && field == 'address'">
         <form>
           <input type="text" placeholder="Update Address" id="address">
