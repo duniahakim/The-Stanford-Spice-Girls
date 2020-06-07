@@ -42,7 +42,6 @@ export class SchoolChatComponent{ //implements OnInit{
   school: Observable<any[]>;
   user: User = JSON.parse(localStorage.getItem('user'));
   newSchoolRef: AngularFireList<any>;
-  showNoConversation: boolean = false;
   showDropdown: boolean = false;
   private listingsCollection: AngularFirestoreCollection<any>;
 
@@ -123,8 +122,6 @@ export class SchoolChatComponent{ //implements OnInit{
       this.af.object('/schools/' + this.schoolId + '/teachers/' + this.userId + '/').update({
          date: -Date.now()
        });
-    } else if (this.userId === '') {
-      this.showNoConversation = true;
     }
 
     //scrolling to bottom of chat

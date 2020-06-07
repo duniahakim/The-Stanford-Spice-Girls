@@ -39,7 +39,6 @@ export class MessagingComponent{ //implements OnInit{
   schoolId: string = '';
   user: User = JSON.parse(localStorage.getItem('user'));
   username: any;
-  showNoConversation: boolean = false;
   showDropdown: boolean = false;
   private listingsCollection: AngularFirestoreCollection<any>;
 
@@ -107,8 +106,6 @@ export class MessagingComponent{ //implements OnInit{
       this.af.object('/users/' + this.userId + '/schools/' + this.schoolId + '/').update({
          date: -Date.now()
        });
-    } else if (this.schoolId === '') {
-      this.showNoConversation = true;
     }
 
     //scrolling to bottom of chat
