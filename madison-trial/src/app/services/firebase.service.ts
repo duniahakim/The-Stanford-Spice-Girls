@@ -13,31 +13,31 @@ export class FirebaseService {
 	constructor(public db: AngularFirestore) {}
 
 	createUser(value) {
-		if (value.type == "school") { // Register a school
+		if (value.type === "school") { // Register a school
 			return this.db.collection('users').doc(value.email).set({
 		    name: value.name,
 		    nameToSearch: value.name.toLowerCase(),
-		    email: value.email,
-			district: value.district,
-			type: value.type,
-			bio: value.bio,
-			other: value.other,
-			address: value.address,
-			classSize: value.classSize,
-			website: value.website,
-			photo: value.photo
+		    email: value.email.toLowerCase(),
+  			district: value.district,
+  			type: value.type,
+  			bio: value.bio,
+  			other: value.other,
+  			address: value.address,
+  			classSize: value.classSize,
+  			website: value.website,
+  			photo: value.photo
 	  });
 		} else {
 			return this.db.collection('users').doc(value.email).set({
 		    name: value.name,
 		    nameToSearch: value.name.toLowerCase(),
-		    email: value.email,
-			district: value.district,
-			type: value.type,
-			subject: value.subject,
-			bio: value.bio,
-			education: value.education,
-			teaching: value.teaching
+		    email: value.email.toLowerCase(),
+  			district: value.district,
+  			type: value.type,
+  			subject: value.subject,
+  			bio: value.bio,
+  			education: value.education,
+  			teaching: value.teaching
 	  });
 		}
 	}
@@ -64,7 +64,7 @@ export class FirebaseService {
 			.doc(this.user.email).collection("listings").doc(id).set({});
   	}
 
-	// users -> sub -> create collection confirmedListings 
+	// users -> sub -> create collection confirmedListings
 	// [id] is ID of listing
   	addConfirmedListing(id: string) {
   		return this.db.collection('users')
