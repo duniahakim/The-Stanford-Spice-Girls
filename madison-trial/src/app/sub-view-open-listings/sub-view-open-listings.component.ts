@@ -31,16 +31,17 @@ export class SubViewOpenListingsComponent implements OnInit {
 
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
-        if (doc.data().status == "open") {
+        if (doc.data().status === "open") {
           this.LISTINGS.push(doc.data());
         }
       });
     }).catch(err => {
+      confirm(err.message);
       console.log('Error getting listings in sub-view-open-listings', err);
     });
   }
 
-  confirmListing(id: string) {
+  confirmListing(id: any) {
     // change listing from open to closed & put id of sub into this listing
     var docRef = this.db.collection('listings').doc(id);
     docRef.update({

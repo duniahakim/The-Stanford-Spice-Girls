@@ -50,9 +50,6 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     }).catch(err => {
       console.log('Error getting documents', err);
     });
-
-
-
   }
 
   createChat(schoolId: any, schoolName: any) {

@@ -25,9 +25,9 @@ export class AppComponent {
       // && this.authService.isLoggedIn
       if (user) {
         this.notLoggedIn = false;
-        if (localStorage.getItem('type') == "school") {
+        if (localStorage.getItem('type') === "school") {
           this.changeSchoolHeader();
-        } else if (localStorage.getItem('type') == "sub") {
+        } else if (localStorage.getItem('type') === "sub") {
           this.changeHeader();
         }
       }
