@@ -30,16 +30,15 @@
       <!-- Show Listings in order by date of job -->
       <tbody *ngIf="LISTINGS">
           <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
-              <td class="school_name">{{listing.schoolName}}</td>
-              <td class="subject"> {{listing.subject}} </td>
-              <td class="grade"> Grade {{listing.grade}} </td>
-              <td class="date and time"> {{listing.datetime}} </td>
-              <td class="pay_rate"> {{listing.pay}} </td>
-              <td class="teacher_name"> {{listing.teacherName}} </td>
-              <td class="teacher_email"> {{listing.teacherEmail}} </td>
-              <td class="schoolID">School for linking to profile {{listing.schoolID}}</td>
+              <td class="school_name"> School Name: {{listing.schoolName}}</td>
+              <td class="subject"> Subject: {{listing.subject}} </td>
+              <td class="grade"> Grade level: {{listing.grade}} </td>
+              <td class="date and time"> Date & time: {{listing.datetime}} </td>
+              <td class="pay_rate"> Pay: {{listing.pay}} </td>
+              <td class="teacher_name"> Teacher name: {{listing.teacherName}} </td>
+              <td class="teacher_email"> Teacher email: {{listing.teacherEmail}} </td>
+              <!-- <td class="schoolID">School for linking to profile {{listing.schoolID}}</td> -->
               <button (click)="createChat(listing.schoolID, listing.schoolName)" class="btn btn-default">Chat with {{listing.schoolName}}</button>
-              <p> Lesson Plan to be added later. </p>
           </tr>
       </tbody>
   </table>

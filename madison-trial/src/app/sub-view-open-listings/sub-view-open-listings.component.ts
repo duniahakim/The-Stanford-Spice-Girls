@@ -31,11 +31,12 @@ export class SubViewOpenListingsComponent implements OnInit {
 
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
-        if (doc.data().status == "open") {
+        if (doc.data().status === "open") {
           this.LISTINGS.push(doc.data());
         }
       });
     }).catch(err => {
+      confirm(err.message);
       console.log('Error getting listings in sub-view-open-listings', err);
     });
   }

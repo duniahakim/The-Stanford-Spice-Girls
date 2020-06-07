@@ -44,6 +44,7 @@ export class FirebaseService {
 
 	createListing(value) {
 		// add listing metadata
+		// ID is listing id
 		const id = this.db.createId();
 		this.db.collection('listings').doc(id).set({
 			subject: value.subject,

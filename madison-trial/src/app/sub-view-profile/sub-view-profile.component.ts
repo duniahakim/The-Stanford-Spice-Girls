@@ -45,34 +45,45 @@ export class SubViewProfileComponent implements OnInit {
 
   updateField(field: string){
     var docRef = this.db.collection('users').doc(this.email);
-    if(field == 'name')
-    docRef.update({
-      name: (<HTMLInputElement>document.getElementById("name")).value
-    });
-    if(field == 'email')
-    docRef.update({
-      email: (<HTMLInputElement>document.getElementById("email")).value
-    });
-    if(field == 'district')
-    docRef.update({
-      district: (<HTMLInputElement>document.getElementById("district")).value
-    });
-    if(field == 'subject')
-    docRef.update({
-      subject: (<HTMLInputElement>document.getElementById("subject")).value
-    });
-    if(field == 'bio')
-    docRef.update({
-      bio: (<HTMLInputElement>document.getElementById("bio")).value
-    });
-    if(field == 'education')
-    docRef.update({
-      education: (<HTMLInputElement>document.getElementById("education")).value
-    });
-    if(field == 'experience')
-    docRef.update({
-      teaching: (<HTMLInputElement>document.getElementById("experience")).value
-    });
-  }
 
+    if (field === 'name') {
+      docRef.update({
+        name: (<HTMLInputElement>document.getElementById("name")).value
+      });
+      docRef.update({
+        nameToSearch: (<HTMLInputElement>document.getElementById("name")).value.toLowerCase()
+      });
+      this.user.displayName = (<HTMLInputElement>document.getElementById("name")).value;
+    }
+    
+    if (field === 'district') {
+      docRef.update({
+        district: (<HTMLInputElement>document.getElementById("district")).value
+      });
+    }
+
+    if (field === 'subject') {
+      docRef.update({
+        subject: (<HTMLInputElement>document.getElementById("subject")).value
+      });
+    }
+
+    if (field === 'bio') {
+      docRef.update({
+        bio: (<HTMLInputElement>document.getElementById("bio")).value
+      });
+    }
+
+    if (field === 'education') {
+      docRef.update({
+        education: (<HTMLInputElement>document.getElementById("education")).value
+      });
+    }
+
+    if (field === 'experience') {
+      docRef.update({
+        teaching: (<HTMLInputElement>document.getElementById("experience")).value
+      });
+    }
+  }
 }

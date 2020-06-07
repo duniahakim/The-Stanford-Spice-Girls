@@ -12,13 +12,7 @@
           <button (click)="updateField('name')">Submit</button>
         </form>
       </div>
-      <p> Email: {{article.email}} <i (click)="editItem($event, 'email')" class="fa fa-pencil"></i></p>
-      <div *ngIf="editState && field == 'email'">
-        <form>
-          <input type="text" placeholder="Update Email" id="email">
-          <button (click)="updateField('email')">Submit</button>
-        </form>
-      </div>
+      <p> Email: {{article.email}} </p>
       <p> District: {{article.district}} <i (click)="editItem($event, 'district')" class="fa fa-pencil"></i></p>
       <div *ngIf="editState && field == 'district'">
         <form>
