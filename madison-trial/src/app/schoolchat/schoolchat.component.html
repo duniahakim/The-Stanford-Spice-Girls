@@ -18,9 +18,11 @@ crossorigin="anonymous"
               <button class="dropbtn">
                 <fa-icon [icon]="faPlus"></fa-icon>
               </button>
-              <button *ngFor="let listing of confirmedListings | keyvalue" class="dropdown-content" (click)="createChat(listing.value.subID, listing.value.subName)">
-                {{listing.value.subName}}
-              </button>
+              <div  *ngFor="let listing of confirmedListings | keyvalue">
+                <button class="dropdown-content" (click)="createChat(listing.value.subID, listing.value.subName)">
+                  {{listing.value.subName}}
+                </button>
+              </div>
             </div>
           </div>
           <div class="inbox_chat">

@@ -24,9 +24,11 @@ rel="stylesheet"
               <button class="dropbtn">
                 <fa-icon [icon]="faPlus"></fa-icon>
               </button>
-              <button *ngFor="let listing of confirmedListings | keyvalue" class="dropdown-content" (click)="createChat(listing.value.schoolId, listing.value.schoolName)">
-                {{listing.value.schoolName}}
+              <div  *ngFor="let listing of confirmedListings | keyvalue">
+              <button  class="dropdown-content" (click)="createChat(listing.value.schoolID, listing.value.schoolName)">
+                  {{listing.value.schoolName}}
               </button>
+              </div>
             </div>
           </div>
           <div class="inbox_chat">
