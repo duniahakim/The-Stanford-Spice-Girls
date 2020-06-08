@@ -30,6 +30,8 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MessagingComponent,
     SchoolChatComponent,
     IndividualListingComponent
-
+    
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
