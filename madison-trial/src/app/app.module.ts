@@ -29,6 +29,8 @@ import { MessagingComponent } from './messaging/messaging.component';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,7 @@ import { IndividualListingComponent } from './individual-listing/individual-list
     MessagingComponent,
     SchoolChatComponent,
     IndividualListingComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { IndividualListingComponent } from './individual-listing/individual-list
  	  AngularFirestoreModule,
     AngularFireDatabaseModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

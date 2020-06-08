@@ -1,54 +1,73 @@
+.content {
+	margin-top: 40px;
+}
+
 .container {
+	position: relative;
 	max-width: 1170px;
 	margin: auto;
 }
 
 img {
+	position: relative;
 	max-width: 100%;
 }
 
 .inbox_people {
+	position: relative;
 	background: #f8f8f8 none repeat scroll 0 0;
 	float: left;
 	overflow: hidden;
 	width: 40%;
 	border-right: 1px solid #c4c4c4;
+	height: 600px;
 }
 
 .inbox_msg {
+	position: relative;
 	border: 1px solid #c4c4c4;
 	clear: both;
 	overflow: hidden;
 }
 
 .top_spac {
+	position: relative;
 	margin: 20px 0 0;
 }
 
 .channel_heading {
+	position: relative;
 	float: left;
 	width: 40%;
 }
 
 .srch_bar {
+	position: relative;
 	display: inline-block;
 	text-align: right;
 	width: 60%;
 }
 
 .headind_srch {
+	position: absolute;
 	padding: 10px 29px 10px 20px;
 	overflow: hidden;
 	border-bottom: 1px solid #c4c4c4;
+	z-index: 15;
+	display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .channel_heading h4 {
+	position: relative;
 	color: #666266;
 	font-size: 21px;
 	margin: auto;
 }
 
 .srch_bar input {
+	position: relative;
 	border: 1px solid #cdcdcd;
 	border-width: 0 0 1px 0;
 	width: 80%;
@@ -57,6 +76,7 @@ img {
 }
 
 .srch_bar .input-group-addon button {
+	position: relative;
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 	border: medium none;
 	padding: 0;
@@ -65,43 +85,51 @@ img {
 }
 
 .srch_bar .input-group-addon {
+	position: relative;
 	margin: 0 0 0 -27px;
 }
 
 .chat_ib h5 {
+	position: relative;
 	font-size: 15px;
 	color: #464646;
 	margin: 0 0 8px 0;
 }
 
 .chat_ib h5 span {
+	position: relative;
 	font-size: 13px;
 	float: right;
 }
 
 .chat_ib p {
+	position: relative;
 	font-size: 14px;
 	color: #989898;
 	margin: auto
 }
 
 .chat_img {
+	position: relative;
 	float: left;
 	width: 11%;
 }
 
 .chat_ib {
+	position: relative;
 	float: left;
 	padding: 0 0 0 15px;
 	width: 88%;
 }
 
 .chat_people {
+	position: relative;
 	overflow: hidden;
 	clear: both;
 }
 
 .chat_list {
+	position: relative;
 	border-bottom: 1px solid #c4c4c4;
 	margin: 0;
 	padding: 18px 16px 10px;
@@ -113,11 +141,14 @@ img {
 }
 
 .inbox_chat {
+	position: relative;
 	height: 550px;
 	overflow-y: scroll;
+	top: 50px;
 }
 
 .active_chat {
+	position: relative;
 	background: #ebebeb;
 }
 
@@ -127,6 +158,7 @@ img {
 }
 
 .received_msg {
+	position: relative;
 	display: inline-block;
 	padding: 0 0 0 10px;
 	vertical-align: top;
@@ -134,6 +166,7 @@ img {
 }
 
 .received_withd_msg p {
+	position: relative;
 	background: #ebebeb none repeat scroll 0 0;
 	border-radius: 3px;
 	color: #646464;
@@ -144,6 +177,7 @@ img {
 }
 
 .time_date {
+	position: relative;
 	color: #747474;
 	display: block;
 	font-size: 12px;
@@ -151,16 +185,19 @@ img {
 }
 
 .received_withd_msg {
+	position: relative;
 	width: 57%;
 }
 
 .mesgs {
+	position: relative;
 	float: left;
 	padding: 30px 15px 0 25px;
 	width: 60%;
 }
 
 .sent_msg p {
+	position: relative;
 	background: #DCD3D8 none repeat scroll 0 0;
 	border-radius: 3px;
 	font-size: 14px;
@@ -171,15 +208,18 @@ img {
 }
 
 .outgoing_msg {
+	position: relative;
 	overflow: hidden;
 }
 
 .sent_msg {
+	position: relative;
 	float: right;
 	width: 46%;
 }
 
 .input_msg_write input {
+	position: relative;
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 	border: medium none;
 	color: #4c4c4c;
@@ -196,6 +236,7 @@ img {
 }
 
 .msg_send_btn {
+	position: relative;
 	background: #666266 none repeat scroll 0 0;
 	border: medium none;
 	border-radius: 50%;
@@ -212,24 +253,76 @@ img {
 }
 
 .messaging {
+	position: relative;
 	padding: 0 0 50px 0;
 }
 
 .msg_history {
+	position: relative;
 	height: 516px;
 	overflow-y: auto;
 }
 
 .message {
+	position: relative;
 	list-style-type: none;
 	margin: 12px 0px;
 }
 
-
 .chosen {
+	position: relative;
 	background-color: lightgray;
 }
 
-#no_conversation {
-	text-align: center;
+
+.dropbtn {
+	/* position: relative; */
+  background-color: #666266;
+  color: white;
+  font-size: 16px;
+  border: none;
+	outline: none;
+	border: medium none;
+	border-radius: 50%;
+	color: #fff;
+	cursor: pointer;
+	font-size: 17px;
+	height: 33px;
+	width: 33px;
+	outline: none;
+  box-shadow: none;
+	position: relative;
+	float: right;
+}
+
+.dropdown {
+  display: inline-block;
+	width: 100px;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	width: 100%;
+	border: none;
+	color: black;
+	text-decoration: none;
+	max-width: 100px;
+}
+
+.dropdown-content:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+button {
+	outline: none !important;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #524e52;
 }

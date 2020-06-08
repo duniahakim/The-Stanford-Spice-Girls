@@ -20,11 +20,13 @@ rel="stylesheet"
             <div class="channel_heading">
               <h4>Schools</h4>
             </div>
-            <button (click)="startConversation()" class="dropbtn">Start Convo</button>
-            <div class="dropdown" *ngIf="this.showDropdown">
-              <div *ngFor="let listing of confirmedListings | keyvalue" id="myDropdown" class="dropdown-content">
-                <button (click)="createChat(listing.value.schoolId, listing.value.schoolName)"> {{listing.value.schoolName}}</button>
-              </div>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <fa-icon [icon]="faPlus"></fa-icon>
+              </button>
+              <button *ngFor="let listing of confirmedListings | keyvalue" class="dropdown-content" (click)="createChat(listing.value.schoolId, listing.value.schoolName)">
+                {{listing.value.schoolName}}
+              </button>
             </div>
           </div>
           <div class="inbox_chat">
@@ -86,7 +88,7 @@ rel="stylesheet"
               name="msgVal"
               [(ngModel)]="msgVal"/>
               <button class="msg_send_btn" type="button" (click)="chatSend()">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                <fa-icon [icon]="faPaperPlane"></fa-icon>
               </button>
             </form>
           </div>

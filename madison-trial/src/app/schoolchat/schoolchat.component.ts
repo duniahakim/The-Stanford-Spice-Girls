@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
+import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -27,6 +28,8 @@ import { User } from 'firebase';
 
 
 export class SchoolChatComponent{ //implements OnInit{
+  faPlus = faPlus;
+  faPaperPlane = faPaperPlane;
   confirmedListings: {[key: string]: Object} = {};
   email: string = '';
   name: string = '';
@@ -42,11 +45,7 @@ export class SchoolChatComponent{ //implements OnInit{
   school: Observable<any[]>;
   user: User = JSON.parse(localStorage.getItem('user'));
   newSchoolRef: AngularFireList<any>;
-  showDropdown: boolean = false;
   private listingsCollection: AngularFirestoreCollection<any>;
-
-
-
 
   constructor(public db: AngularFirestore, public af: AngularFireDatabase) {
       this.schoolId = this.user.uid;
@@ -54,6 +53,9 @@ export class SchoolChatComponent{ //implements OnInit{
       this.name = this.user.displayName;
       this.email = this.user.email;
       this.schoolRef = af.list('/schools/' + this.schoolId);
+
+      this.setupConversation();
+
       this.school = this.schoolRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val() }))
@@ -66,7 +68,6 @@ export class SchoolChatComponent{ //implements OnInit{
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       ));
-
       this.listOfTeachers.subscribe( teachers => {
         if (teachers.length !== 0) {
           if (this.userId === '') {
@@ -77,29 +78,24 @@ export class SchoolChatComponent{ //implements OnInit{
           }
         }
        });
-       this.setupConversation();
-
-       this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
-
-       this.listingsCollection.get().toPromise().then(snapshot => {
-         snapshot.forEach(doc => {
-           db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-             if (doc.data() && doc.data().status === "closed") {
-               this.confirmedListings[doc.data().teacherName] = doc.data();
-             }
-           });
-         });
-       }).catch(err => {
-         console.log('Error getting documents', err);
-       });
-  }
-
-  startConversation() {
-    this.showDropdown = true;
   }
 
 
   setupConversation() {
+    let self = this;
+    this.listingsCollection = this.db.collection<any>('users').doc(this.user.email).collection<any>('listings');
+    this.listingsCollection.get().toPromise().then(snapshot => {
+      snapshot.forEach(doc => {
+        self.db.collection('listings').doc(doc.id).ref.get().then((doc) => {
+          if (doc.data() && doc.data().status === "closed") {
+            self.confirmedListings[doc.data().subID] = doc.data();
+          }
+        });
+      });
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
+
     let conversationID;
     if (this.userId > this.schoolId) {
       conversationID = this.schoolId + '-' + this.userId;
@@ -130,7 +126,6 @@ export class SchoolChatComponent{ //implements OnInit{
   }
 
   createChat(subID, subName) {
-    this.showDropdown = false;
     this.af.object('/schools/' + this.schoolId + '/teachers/' + subID + '/').update({
        id: subID,
        name: subName,
@@ -148,6 +143,7 @@ export class SchoolChatComponent{ //implements OnInit{
   //   this.itemsRef = this.af.list('/messages/user1-user2');
   //   this.listOfSchools = this.af.list('/user');
   // }
+
 
   pickedTeacher(userId: any) {
     this.userId = userId;

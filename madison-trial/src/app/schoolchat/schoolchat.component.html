@@ -4,13 +4,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 crossorigin="anonymous"
 />
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-type="text/css"
-rel="stylesheet"
-/>
-
-<!-- Toolbar -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <div class="content" role="main">
   <div class="container">
     <div class="messaging">
@@ -20,11 +14,13 @@ rel="stylesheet"
             <div class="channel_heading">
               <h4>Teachers</h4>
             </div>
-            <button (click)="startConversation()" class="dropbtn">Start Convo</button>
-            <div class="dropdown" *ngIf="this.showDropdown">
-              <div *ngFor="let listing of confirmedListings | keyvalue" id="myDropdown" class="dropdown-content">
-                <button (click)="createChat(listing.value.subID, listing.value.teacherName)"> {{listing.value.teacherName}}</button>
-              </div>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <fa-icon [icon]="faPlus"></fa-icon>
+              </button>
+              <button *ngFor="let listing of confirmedListings | keyvalue" class="dropdown-content" (click)="createChat(listing.value.subID, listing.value.subName)">
+                {{listing.value.subName}}
+              </button>
             </div>
           </div>
           <div class="inbox_chat">
@@ -87,7 +83,7 @@ rel="stylesheet"
               name="msgVal"
               [(ngModel)]="msgVal"/>
               <button class="msg_send_btn" type="button" (click)="chatSend()">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                <fa-icon [icon]="faPaperPlane"></fa-icon>
               </button>
             </form>
           </div>

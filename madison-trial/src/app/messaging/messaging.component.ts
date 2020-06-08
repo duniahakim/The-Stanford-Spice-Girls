@@ -4,6 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'firebase';
+import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -28,6 +30,8 @@ import { User } from 'firebase';
 
 
 export class MessagingComponent{ //implements OnInit{
+  faPlus = faPlus;
+  faPaperPlane = faPaperPlane;
   confirmedListings: {[key: string]: Object} = {};
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
@@ -39,7 +43,6 @@ export class MessagingComponent{ //implements OnInit{
   schoolId: string = '';
   user: User = JSON.parse(localStorage.getItem('user'));
   username: any;
-  showDropdown: boolean = false;
   private listingsCollection: AngularFirestoreCollection<any>;
 
   constructor(public db: AngularFirestore, public af: AngularFireDatabase) {
@@ -65,24 +68,8 @@ export class MessagingComponent{ //implements OnInit{
         }
        });
       this.setupConversation();
-      this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
-
-      this.listingsCollection.get().toPromise().then(snapshot => {
-        snapshot.forEach(doc => {
-          db.collection('listings').doc(doc.id).ref.get().then((doc) => {
-            if (doc.data() && doc.data().status === "closed") {
-              this.confirmedListings[doc.data().schoolName] = doc.data();
-            }
-          });
-        });
-      }).catch(err => {
-        console.log('Error getting documents', err);
-      });
   }
 
-  startConversation() {
-    this.showDropdown = true;
-  }
 
   setupConversation() {
     let conversationID;
@@ -97,6 +84,20 @@ export class MessagingComponent{ //implements OnInit{
     map(changes =>
       changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
     ));
+
+    let self = this;
+    this.listingsCollection = this.db.collection<any>('users').doc(this.user.email).collection<any>('listings');
+    this.listingsCollection.get().toPromise().then(snapshot => {
+      snapshot.forEach(doc => {
+        self.db.collection('listings').doc(doc.id).ref.get().then((doc) => {
+          if (doc.data() && doc.data().status === "closed") {
+            self.confirmedListings[doc.data().schoolID] = doc.data();
+          }
+        });
+      });
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
   }
 
   chatSend() {
@@ -114,7 +115,6 @@ export class MessagingComponent{ //implements OnInit{
   }
 
   createChat(schoolId, schoolName) {
-    this.showDropdown = false;
     this.af.object('/schools/' + schoolId + '/teachers/' + this.userId + '/').update({
        id: this.userId,
        name: this.user.displayName,
