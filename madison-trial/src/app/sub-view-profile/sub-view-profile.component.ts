@@ -3,6 +3,7 @@ import { User } from  'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Sub } from '../sub-interface/sub'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-view-profile',
@@ -13,29 +14,37 @@ export class SubViewProfileComponent implements OnInit {
   // User data from auth module
   editState: boolean = false;
   field: string;
-  
+
 	user: User = JSON.parse(localStorage.getItem('user'));
-	email = this.user.email;
+	email: any;
   uid = this.user.uid;
 	photoUrl = this.user.photoURL;
 
   article: any;
   private itemsCollection: AngularFirestoreCollection<any>;
   items: Observable<any[]>;
+  sub: any;
 
 
-  constructor(public db: AngularFirestore) {
-
-    this.itemsCollection = db.collection<any>('users');
-    this.items = this.itemsCollection.valueChanges();
-
-    this.itemsCollection.doc(this.email).ref.get().then((doc) => {
-        this.article = doc.data();
-      });
+  constructor(private route: ActivatedRoute,
+    private router: Router, public db: AngularFirestore) {
 
   }
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe(params => {
+        if (params['email']) {
+          this.email = params['email'];
+        } else {
+          this.email = this.user.email;
+        }
+        this.itemsCollection = this.db.collection<any>('users');
+        this.items = this.itemsCollection.valueChanges();
+
+        this.itemsCollection.doc(this.email).ref.get().then((doc) => {
+            this.article = doc.data();
+        });
+      });
   }
 
   editItem(event, field: string){
@@ -55,7 +64,7 @@ export class SubViewProfileComponent implements OnInit {
       });
       this.user.displayName = (<HTMLInputElement>document.getElementById("name")).value;
     }
-    
+
     if (field === 'district') {
       docRef.update({
         district: (<HTMLInputElement>document.getElementById("district")).value

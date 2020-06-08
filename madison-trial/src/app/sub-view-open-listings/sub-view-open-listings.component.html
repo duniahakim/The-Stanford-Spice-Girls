@@ -36,7 +36,6 @@
         <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
             <td class="school_name">
               <a [routerLink]="['/school-view-profile']" [queryParams]="{ email: listing.schoolEmail } ">{{listing.schoolName}}</a>
-              <!-- <a [routerLink]="['/school-view-profile']" [state]="{data: {email: listing.schoolEmail}}">{{listing.schoolName}}</a> -->
             </td>
             <td class="subject"> {{listing.subject}} </td>
             <td class="grade"> Grade {{listing.grade}} </td>

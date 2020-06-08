@@ -1,10 +1,10 @@
 <body>
     <div class="form-group">
       <strong>Filter Confirmed Listings By:</strong>
-  
+
       <select class="form-control"
               [(ngModel)]="filter_by">
-        <option></option>      
+        <option></option>
 
         <option value="sub_name">Substitute Name</option>
         <option value="subject">Subject</option>
@@ -12,7 +12,7 @@
         <option value="date">Date</option>
         <option value="teacher_name">Teacher Name</option>
       </select>
-  
+
       <div class="input-group">
         <input
           type="text"
@@ -22,27 +22,29 @@
           [(ngModel)]="searchString"
         />
       </div>
-    </div>  
-  
+    </div>
+
     <table class="center">
       <thead>
           <h1>Confirmed Listings</h1>
       </thead>
-  
+
       <!-- Show Listings in order by date of job -->
       <tbody *ngIf="LISTINGS">
           <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
+              <td class="subName"> Substitute name:
+                <a [routerLink]="['/sub-view-profile']" [queryParams]="{ email: listing.subEmail } ">
+                  {{listing.subName}}
+                </a>
+              </td>
               <td class="subject"> {{listing.subject}} </td>
               <td class="grade"> Grade {{listing.grade}} </td>
               <td class="date and time"> {{listing.datetime}} </td>
               <td class="pay_rate"> {{listing.pay}} </td>
               <td class="teacher_name"> Teacher who requested listing: {{listing.teacherName}} </td>
-              <td class="subName"> Substitute name: {{listing.subName}} </td>
-              <td class="subID"> Substitute id for linking to profile: {{listing.subID}} </td>
               <p> Don't forget to add the lesson plan! </p>
               <button (click)="createChat(listing.subID, listing.subName)">Start Chat with {{listing.subName}}</button>
           </tr>
       </tbody>
   </table>
   </body>
-  

@@ -47,11 +47,12 @@ export class SubViewOpenListingsComponent implements OnInit {
     docRef.update({
       status: "closed",
       subID: this.user.uid,
-      subName: this.user.displayName
+      subName: this.user.displayName,
+      subEmail: this.user.email
     });
 
 
-    // users -> sub -> create collection confirmedListings 
+    // users -> sub -> create collection confirmedListings
     this.fbServ.addConfirmedListing(id).then(res => {
       confirm("Success! You have confirmed the listing.");
      }, err => {
