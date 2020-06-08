@@ -15,7 +15,6 @@ header {
 }
 
 a {
-    color: white;
     text-decoration: none;
 }
 
@@ -25,8 +24,6 @@ a.logo {
 
 nav {
     float: right;
-
-
 }
 
 ul {
@@ -100,5 +97,3 @@ td.subject, td.grade {
 td.date, td.time, td.pay_rate, td.teacher_name, td.teacher_email {
     font-size: 1rem;;
 }
-    
-

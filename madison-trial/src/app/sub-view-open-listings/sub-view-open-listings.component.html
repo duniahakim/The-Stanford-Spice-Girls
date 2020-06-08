@@ -34,7 +34,10 @@
     <!-- Show Listings in order by date of job -->
     <tbody *ngIf="LISTINGS">
         <tr *ngFor="let listing of LISTINGS | listingsFilter : filter_by : searchString">
-            <td class="school_name">{{listing.schoolName}}</td>
+            <td class="school_name">
+              <a [routerLink]="['/school-view-profile']" [queryParams]="{ email: listing.schoolEmail } ">{{listing.schoolName}}</a>
+              <!-- <a [routerLink]="['/school-view-profile']" [state]="{data: {email: listing.schoolEmail}}">{{listing.schoolName}}</a> -->
+            </td>
             <td class="subject"> {{listing.subject}} </td>
             <td class="grade"> Grade {{listing.grade}} </td>
             <td class="date"> {{listing.datetime}} </td>

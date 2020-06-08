@@ -57,7 +57,8 @@ export class FirebaseService {
 			lessonplan: value.lessonplan,
 			status: "open",
 			schoolID: this.user.uid,
-      		id: id
+      schoolEmail: this.user.email,
+      id: id
 	  });
 
 		// add to school open listings

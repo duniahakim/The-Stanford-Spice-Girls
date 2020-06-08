@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from  'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-school-view-profile',
@@ -14,27 +15,35 @@ export class SchoolViewProfileComponent implements OnInit {
   addy: string;
 
   user: User = JSON.parse(localStorage.getItem('user'));
-  email = this.user.email;
+  email: any;
   article: any;
   private itemsCollection: AngularFirestoreCollection<any>;
   items: Observable<any[]>;
+  sub: any;
 
-  constructor(public db: AngularFirestore) {
-
-    this.itemsCollection = db.collection<any>('users');
-    this.items = this.itemsCollection.valueChanges();
-
-    this.itemsCollection.doc(this.email).ref.get().then((doc) => {
-        this.article = doc.data();
-      });
+  constructor(private route: ActivatedRoute,
+    private router: Router, public db: AngularFirestore) {
   }
-  
+
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe(params => {
+        if (params['email']) {
+          this.email = params['email'];
+        } else {
+          this.email = this.user.email;
+        }
+        this.itemsCollection = this.db.collection<any>('users');
+        this.items = this.itemsCollection.valueChanges();
+
+        console.log(this.email);
+        this.itemsCollection.doc(this.email).ref.get().then((doc) => {
+            this.article = doc.data();
+        });
+      });
   }
 
   addURL(){
-    console.log("hello");
     this.addy = this.article.address;
     (<HTMLInputElement>document.getElementById("frame")).src = "https://www.google.com/maps?q=" + this.addy + "&output=embed";
   }
