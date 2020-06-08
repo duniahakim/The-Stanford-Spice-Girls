@@ -78,7 +78,22 @@ rel="stylesheet"
               </ng-template>
             </li>
           </div>
-          <div class="type_msg">
+          <div *ngIf="!this.listOfSchools" class="type_msg">
+            <form class="input_msg_write" (ngSubmit)="chatSend()">
+              <input
+              disabled
+              autocomplete="off"
+              type="text"
+              class="write_msg"
+              placeholder="Type a message"
+              name="msgVal"
+              [(ngModel)]="msgVal"/>
+              <button disabled class="msg_send_btn" type="button" (click)="chatSend()">
+                <fa-icon [icon]="faPaperPlane"></fa-icon>
+              </button>
+            </form>
+          </div>
+          <div *ngIf="this.listOfSchools" class="type_msg">
             <form class="input_msg_write" (ngSubmit)="chatSend()">
               <input
               autocomplete="off"

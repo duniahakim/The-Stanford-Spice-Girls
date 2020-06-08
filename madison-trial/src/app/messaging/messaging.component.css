@@ -237,7 +237,7 @@ img {
 
 .msg_send_btn {
 	position: relative;
-	background: #666266 none repeat scroll 0 0;
+	background: #9c759c none repeat scroll 0 0;
 	border: medium none;
 	border-radius: 50%;
 	color: #fff;
@@ -277,7 +277,7 @@ img {
 
 .dropbtn {
 	/* position: relative; */
-  background-color: #666266;
+  background-color: #9c759c;
   color: white;
   font-size: 16px;
   border: none;
@@ -325,4 +325,8 @@ button {
 
 .dropdown:hover .dropbtn {
 	background-color: #524e52;
+}
+
+.grayed {
+	background-color: gray;
 }
