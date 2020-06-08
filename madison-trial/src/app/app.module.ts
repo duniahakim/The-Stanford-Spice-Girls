@@ -30,6 +30,7 @@ import { SchoolChatComponent } from './schoolchat/schoolchat.component';
 import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

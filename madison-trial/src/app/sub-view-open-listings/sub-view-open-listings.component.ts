@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from  'firebase';
 import { FirebaseService } from '../services/firebase.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-sub-view-open-listings',
@@ -25,7 +26,8 @@ export class SubViewOpenListingsComponent implements OnInit {
 
   constructor(
     public db: AngularFirestore,
-    private fbServ: FirebaseService
+    private fbServ: FirebaseService,
+    private afStorage: AngularFireStorage
   ) {
     this.listingsCollection = db.collection('listings');
 
@@ -59,6 +61,20 @@ export class SubViewOpenListingsComponent implements OnInit {
        console.log(err);
        confirm(err.message);
      });
+  }
+
+  downloadLesson(url: any) {
+    this.afStorage.ref(url).getDownloadURL().toPromise().then(function (downloadURL) {
+      var link = document.createElement("a");
+      if (link.download !== undefined) {
+          link.setAttribute("href", downloadURL);
+          link.setAttribute("target", "_blank");
+          link.style.visibility = 'hidden';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      }
+    })
   }
 
   ngOnInit(): void {
