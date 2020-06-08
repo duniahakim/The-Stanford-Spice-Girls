@@ -3,7 +3,7 @@
 
 <h1 class="header">Your profile</h1>
 <div class="container">
-  <div class="row">
+  <div *ngIf="this.article" class="row">
     <div class="col-md-6 col-md-offset-3">
       <p> Name: {{article.name}} <i (click)="editItem($event, 'name')" class="fa fa-pencil"></i></p>
       <div *ngIf="editState && field == 'name'">
@@ -50,7 +50,6 @@
       </div>
     </div>
   </div>
-  
+
 
 </div>
-

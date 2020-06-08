@@ -30,7 +30,7 @@ export class SchoolViewOpenListingsComponent implements OnInit {
 
     this.listingsCollection.get().toPromise().then(snapshot => {
       snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
+        // console.log(doc.id, '=>', doc.data());
         db.collection('listings').doc(doc.id).ref.get().then((doc) => {
           if (doc.data().status == "open") {
             this.LISTINGS.push(doc.data());

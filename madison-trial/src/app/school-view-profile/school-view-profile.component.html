@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<h1 class="header">Welcome, {{article.name}}!</h1>
-<div class="container">
+<h1 *ngIf="this.article" class="header">Welcome, {{article.name}}!</h1>
+<div *ngIf="this.article" class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <p> Account email: {{article.email}}</p>
@@ -53,4 +53,3 @@
     </div>
   </div>
 </div>
-
