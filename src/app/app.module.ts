@@ -24,22 +24,14 @@ import { SubViewConfirmedMatchesComponent } from './sub-view-confirmed-matches/s
 import { SubViewProfileComponent } from './sub-view-profile/sub-view-profile.component';
 import { SubViewMatchesComponent } from './sub-view-matches/sub-view-matches.component';
 import { RegisterComponent } from './register/register.component';
-import { SchoolLoginComponent } from './school-login/school-login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
 import { SchoolChatComponent } from './schoolchat/schoolchat.component';
+import { IndividualListingComponent } from './individual-listing/individual-listing.component';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAscTztvYV091FR8nUcX9cQBf5SIGHghaM",
-  authDomain: "cs194-48dd8.firebaseapp.com",
-  databaseURL: "https://cs194-48dd8.firebaseio.com",
-  projectId: "cs194-48dd8",
-  storageBucket: "cs194-48dd8.appspot.com",
-  messagingSenderId: "124531208729",
-  appId: "1:124531208729:web:52cb027f8f490267cab088",
-  measurementId: "G-HP69NBHD3Y"
-};
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -57,21 +49,24 @@ const firebaseConfig = {
     SubViewProfileComponent,
     SubViewMatchesComponent,
     RegisterComponent,
-    SchoolLoginComponent,
     EditProfileComponent,
     MessagingComponent,
-    SchoolChatComponent
-
+    SchoolChatComponent,
+    IndividualListingComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
  	  AngularFirestoreModule,
     AngularFireDatabaseModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    GooglePlaceModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

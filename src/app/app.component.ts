@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { AngularFireAuth } from  "@angular/fire/auth";
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,24 @@ export class AppComponent {
   subHeader = false;
   schoolHeader = false;
   headerRouter = '';
+  notLoggedIn = true;
 
 
-  constructor(private authService: AuthService) {
-  	// if (authService.isLoggedIn) {
-  	// 	this.loginstatus = 'Logout';
-  	// 	this.routerLink = '';
-  	// }
+  constructor(
+    private authService: AuthService,
+    public  afAuth:  AngularFireAuth
+  ) {
+    this.afAuth.authState.subscribe(user => {
+      // && this.authService.isLoggedIn
+      if (user) {
+        this.notLoggedIn = false;
+        if (localStorage.getItem('type') === "school") {
+          this.changeSchoolHeader();
+        } else if (localStorage.getItem('type') === "sub") {
+          this.changeHeader();
+        }
+      }
+    })
   }
 
   tryLogout() {
@@ -30,6 +42,7 @@ export class AppComponent {
       this.headerRouter = '';
       this.subHeader = false;
       this.schoolHeader = false;
+      this.notLoggedIn = true;
   	}
   }
 

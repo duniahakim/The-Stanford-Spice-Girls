@@ -4,6 +4,7 @@ import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import {} from 'google-maps';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +13,15 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 	registerForm: FormGroup;
-  successMessage = '';
-  errorMessage = '';
+  selectedValue: string = '';
+  placeSearch;
+  autocomplete;
+  formattedAddress;
+  options = {
+    componentRestrictions : {
+      country: ['us']
+    }
+  }
 
   constructor( 
     public db: AngularFireDatabase,
@@ -24,31 +32,40 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
+  handleAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;  
+  }
+
   createForm() {
     this.registerForm = this.fb.group({
       email: ['', Validators.required ],
       password: ['',Validators.required],
       name: [''],
+      type: [''],
+      grade: [''],
       district: [''],
       subject: [''],
       bio: [''],
       education:[''],
-      teaching:['']
+      teaching:[''],
+      other:[''],
+      address: [''],
+      website: [''],
+      classSize: [''],
+      photo: ['']
     });
   }
 
  tryRegister(value){
+   value.address = this.formattedAddress;
    this.authService.register(value)
    .then(res => {
-     this.errorMessage = "";
-     this.successMessage = "Your account has been created! Please log in using the link below.";
+     confirm("Your account has been created! Please log in.");
    }, err => {
      console.log(err);
-     this.errorMessage = err.message;
-     this.successMessage = "";
+     confirm(err.message);
    })
  }
-
 
   ngOnInit(): void {
   }

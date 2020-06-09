@@ -1,7 +1,55 @@
-<img src="https://striveprep.org/wp-content/uploads/2019/07/STRIVEPrep_Smart_mascot_2color_RGB.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<span><b> Welcome Strive School </b></span>
 
-
-<p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3069.9695105303376!2d-105.03036188439813!3d39.69538947945552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c7f7ee6e2e35b%3A0x5394333602156d00!2sSTRIVE%20Prep%20SMART!5e0!3m2!1sen!2sus!4v1589834899117!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></p>
-
+<h1 *ngIf="this.article" class="header">Welcome, {{article.name}}!</h1>
+<div *ngIf="this.article" class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <p> Account email: {{article.email}}</p>
+      <p> District: {{article.district}} <i (click)="editItem($event, 'district')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'district'">
+        <form>
+          <input type="text" placeholder="Update District" id="district">
+          <button (click)="updateField('district')">Submit</button>
+        </form>
+      </div>
+      <p> School Website: {{article.website}} <i (click)="editItem($event, 'website')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'website'">
+        <form>
+          <input type="text" placeholder="Update School Website" id="website">
+          <button (click)="updateField('address')">Submit</button>
+        </form>
+      </div>
+      <p> Address: {{article.address}} <i (click)="editItem($event, 'address')" class="fa fa-pencil"></i></p>
+      <iframe id="frame" src="" >{{addURL()}}</iframe>
+      <div *ngIf="editState && field == 'address'">
+        <form>
+          <input type="text" placeholder="Update Address" id="address">
+          <button (click)="updateField('address')">Submit</button>
+        </form>
+      </div>
+      <p> Bio: {{article.bio}} <i (click)="editItem($event, 'bio')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'bio'">
+        <form>
+          <input type="text" placeholder="Update Bio" id="bio">
+          <button (click)="updateField('bio')">Submit</button>
+        </form>
+      </div>
+      <p> Other info: {{article.other}} <i (click)="editItem($event, 'other')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'other'">
+        <form>
+          <input type="text" placeholder="Update Other Info" id="other">
+          <button (click)="updateField('other')">Submit</button>
+        </form>
+      </div>
+      <p> Average class size: {{article.classSize}} <i (click)="editItem($event, 'classSize')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'classSize'">
+        <form>
+          <input type="text" placeholder="Update Avg Class Size" id="classSize">
+          <button (click)="updateField('size')">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,55 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <h1 class="header">Your profile</h1>
 <div class="container">
-  <div class="row">
+  <div *ngIf="this.article" class="row">
     <div class="col-md-6 col-md-offset-3">
-      <p> Name: {{name}} </p>
-      <p> Email: {{email}} </p>
-      <p> district: {{district}} </p>
-	  <p> subject: {{subject}} </p>
-	  <p> bio: {{bio}} </p>
-	  <p> education: {{education}} </p>
-	  <p> teaching experience: {{teaching}} </p><br>
+      <p> Name: {{article.name}} <i (click)="editItem($event, 'name')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'name'">
+        <form>
+          <input type="text" placeholder="Update Name" id="name">
+          <button (click)="updateField('name')">Submit</button>
+        </form>
+      </div>
+      <p> Email: {{article.email}} </p>
+      <p> District: {{article.district}} <i (click)="editItem($event, 'district')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'district'">
+        <form>
+          <input type="text" placeholder="Update District" id="district">
+          <button (click)="updateField('district')">Submit</button>
+        </form>
+      </div>
+      <p> Subject: {{article.subject}} <i (click)="editItem($event, 'subject')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'subject'">
+        <form>
+          <input type="text" placeholder="Update Subject" id="subject">
+          <button (click)="updateField('subject')">Submit</button>
+        </form>
+      </div>
+      <p> Bio: {{article.bio}} <i (click)="editItem($event, 'bio')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'bio'">
+        <form>
+          <input type="text" placeholder="Update Bio" id="bio">
+          <button (click)="updateField('bio')">Submit</button>
+        </form>
+      </div>
+      <p> Education: {{article.education}} <i (click)="editItem($event, 'education')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'education'">
+        <form>
+          <input type="text" placeholder="Update Education" id="education">
+          <button (click)="updateField('education')">Submit</button>
+        </form>
+      </div>
+      <p> Teaching Experience: {{article.teaching}} <i (click)="editItem($event, 'experience')" class="fa fa-pencil"></i></p>
+      <div *ngIf="editState && field == 'experience'">
+        <form>
+          <input type="text" placeholder="Update Teaching Experience" id="experience">
+          <button (click)="updateField('experience')">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-  <p href="/edit-profile" routerLink="/edit-profile">Edit profile</p>
+
+
 </div>
