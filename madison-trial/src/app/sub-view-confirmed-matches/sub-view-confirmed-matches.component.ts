@@ -3,6 +3,7 @@ import { User } from  'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireDatabase } from "@angular/fire/database";  // deleted AuthProviders, AuthMethods
 import { Router } from "@angular/router";
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-sub-view-confirmed-matches',
@@ -36,7 +37,7 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
   user: User = JSON.parse(localStorage.getItem('user'));
   private listingsCollection: AngularFirestoreCollection<any>;
 
-  constructor(public db: AngularFirestore, public af: AngularFireDatabase, private router: Router) {
+  constructor(public db: AngularFirestore, public af: AngularFireDatabase, private router: Router, private afStorage: AngularFireStorage) {
     this.listingsCollection = db.collection<any>('users').doc(this.user.email).collection<any>('listings');
 
     this.listingsCollection.get().toPromise().then(snapshot => {
@@ -78,6 +79,20 @@ export class SubViewConfirmedMatchesComponent implements OnInit {
     this.router.navigate(['/messaging']);
 
 
+  }
+
+  downloadLesson(url: any) {
+    this.afStorage.ref(url).getDownloadURL().toPromise().then(function (downloadURL) {
+      var link = document.createElement("a");
+      if (link.download !== undefined) {
+          link.setAttribute("href", downloadURL);
+          link.setAttribute("target", "_blank");
+          link.style.visibility = 'hidden';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      }
+    })
   }
 
   ngOnInit(): void {

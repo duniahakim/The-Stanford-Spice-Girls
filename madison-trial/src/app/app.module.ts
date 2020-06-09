@@ -31,7 +31,7 @@ import { IndividualListingComponent } from './individual-listing/individual-list
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

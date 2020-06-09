@@ -43,6 +43,7 @@
               <td class="pay_rate"> {{listing.pay}} </td>
               <td class="teacher_name"> Teacher who requested listing: {{listing.teacherName}} </td>
               <p> Don't forget to add the lesson plan! </p>
+              <button *ngIf="listing.downloadURL && listing.downloadURL !== ''" (click)="downloadLesson(listing.downloadURL)">Download Lesson Plan</button>
               <button (click)="createChat(listing.subID, listing.subName)">Start Chat with {{listing.subName}}</button>
           </tr>
       </tbody>

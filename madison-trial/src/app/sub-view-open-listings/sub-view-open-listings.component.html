@@ -43,7 +43,7 @@
             <td class="pay_rate"> {{listing.pay}} </td>
             <td class="teacher_name"> {{listing.teacherName}} </td>
             <td class="teacher_email"> {{listing.teacherEmail}} </td>
-            <p> Lesson Plan to be added later. </p>
+            <button *ngIf="listing.downloadURL && listing.downloadURL !== ''" (click)="downloadLesson(listing.downloadURL)">Download Lesson Plan</button>
             <button type="submit" (click)="confirmListing(listing.id)"> Confirm </button>
         </tr>
     </tbody>

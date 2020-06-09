@@ -42,7 +42,7 @@ export class FirebaseService {
 		}
 	}
 
-	createListing(value) {
+	createListing(value, downloadURL: any) {
 		// add listing metadata
 		// ID is listing id
 		const id = this.db.createId();
@@ -54,11 +54,11 @@ export class FirebaseService {
 			teacherEmail: value.teacheremail,
 			datetime: value.datetime,
 			pay: value.pay,
-			lessonplan: value.lessonplan,
 			status: "open",
 			schoolID: this.user.uid,
-      schoolEmail: this.user.email,
-      id: id
+      		schoolEmail: this.user.email,
+	  		id: id,
+	  		downloadURL: downloadURL
 	  });
 
 		// add to school open listings
@@ -68,7 +68,7 @@ export class FirebaseService {
 
 	// users -> sub -> create collection confirmedListings
 	// [id] is ID of listing
-  	addConfirmedListing(id: string) {
+  	addConfirmedListing(id: any) {
   		return this.db.collection('users')
 			.doc(this.user.email).collection("listings").doc(id).set({});
   	}

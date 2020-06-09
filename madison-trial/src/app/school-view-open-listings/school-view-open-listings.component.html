@@ -40,6 +40,7 @@
               <td class="teacher_name"> {{listing.teacherName}} </td>
               <td class="teacher_email"> {{listing.teacherEmail}} </td>
               <td class="schoolName"> {{listing.schoolName}} </td>
+              <button *ngIf="listing.downloadURL && listing.downloadURL !== ''" (click)="downloadLesson(listing.downloadURL)">Download Lesson Plan</button>
               <p> Don't forget to add the lesson plan! </p>
           </tr>
       </tbody>
