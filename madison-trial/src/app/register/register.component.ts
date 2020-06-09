@@ -4,6 +4,7 @@ import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import {} from 'google-maps';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,14 @@ import { Observable } from 'rxjs';
 export class RegisterComponent implements OnInit {
 	registerForm: FormGroup;
   selectedValue: string = '';
+  placeSearch;
+  autocomplete;
+  formattedAddress;
+  options = {
+    componentRestrictions : {
+      country: ['us']
+    }
+  }
 
   constructor( 
     public db: AngularFireDatabase,
@@ -21,6 +30,10 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {
     this.createForm();
+  }
+
+  handleAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;  
   }
 
   createForm() {
@@ -36,7 +49,7 @@ export class RegisterComponent implements OnInit {
       education:[''],
       teaching:[''],
       other:[''],
-      address:[''],
+      address: [''],
       website: [''],
       classSize: [''],
       photo: ['']
@@ -44,6 +57,7 @@ export class RegisterComponent implements OnInit {
   }
 
  tryRegister(value){
+   value.address = this.formattedAddress;
    this.authService.register(value)
    .then(res => {
      confirm("Your account has been created! Please log in.");
