@@ -29,6 +29,7 @@
     "angularfire2": "^5.4.2",
     "firebase": "^7.15.0",
     "font-awesome": "^4.7.0",
+    "ngx-google-places-autocomplete": "^2.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
